@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace School.WebApi.Migrations
 {
-    public partial class _38 : Migration
+    public partial class _39 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -223,7 +223,8 @@ namespace School.WebApi.Migrations
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: false),
                     DisciplineId = table.Column<int>(nullable: false),
-                    UnitId = table.Column<int>(nullable: false)
+                    UnitId = table.Column<int>(nullable: false),
+                    roomId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -246,6 +247,12 @@ namespace School.WebApi.Migrations
                         principalTable: "Units",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Classes_Rooms_roomId",
+                        column: x => x.roomId,
+                        principalTable: "Rooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -267,6 +274,11 @@ namespace School.WebApi.Migrations
                 name: "IX_Classes_UnitId",
                 table: "Classes",
                 column: "UnitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Classes_roomId",
+                table: "Classes",
+                column: "roomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Disciplines_StudentId",
@@ -324,6 +336,10 @@ namespace School.WebApi.Migrations
                 table: "Classes");
 
             migrationBuilder.DropForeignKey(
+                name: "FK_Rooms_Units_UnitId",
+                table: "Rooms");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Classes_Disciplines_DisciplineId",
                 table: "Classes");
 
@@ -332,9 +348,6 @@ namespace School.WebApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "InstantMessage");
-
-            migrationBuilder.DropTable(
-                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "socialNetworks");
@@ -353,6 +366,9 @@ namespace School.WebApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Teachers");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "Contacts");

@@ -9,8 +9,8 @@ using School.Repository.Data;
 namespace School.WebApi.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
-    [Migration("20210131191120_38")]
-    partial class _38
+    [Migration("20210202002602_39")]
+    partial class _39
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,6 +74,9 @@ namespace School.WebApi.Migrations
                     b.Property<int>("UnitId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("roomId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DisciplineId");
@@ -81,6 +84,8 @@ namespace School.WebApi.Migrations
                     b.HasIndex("TeacherId");
 
                     b.HasIndex("UnitId");
+
+                    b.HasIndex("roomId");
 
                     b.ToTable("Classes");
                 });
@@ -341,6 +346,10 @@ namespace School.WebApi.Migrations
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("School.Domain.Entities.Room", "room")
+                        .WithMany()
+                        .HasForeignKey("roomId");
                 });
 
             modelBuilder.Entity("School.Domain.Entities.Discipline", b =>

@@ -18,7 +18,7 @@ namespace School.Repository.Data
         {
             _seeding = new Seeding(_context);
             _seeding.Student();
-            return _seeding.Teacher();
+            return await _seeding.Classes();
         }
         //  List<Room> rooms = new List<Room>();
 

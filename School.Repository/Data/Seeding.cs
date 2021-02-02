@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using School.Domain.Entities;
@@ -6,6 +7,7 @@ namespace School.Repository.Data
 {
     public class Seeding
     {
+        private List<Room> _listRoom { get; set; }
         private Room _room { get; set; }
         private List<Unit> _listunit { get; set; }
         private Unit _unit { get; set; }
@@ -14,6 +16,7 @@ namespace School.Repository.Data
         private SocialNetwork _socialNetwork { get; set; }
         private Contact _contact { get; set; }
         private List<Contact> _contactList { get; set; }
+        private List<CheckingAccount> _listCheckingAccount { get; set; }
         private CheckingAccount _checkingAccount { get; set; }
         private List<Discipline> _listDisciplines { get; set; }
         private List<Student> _listStudent { get; set; }
@@ -29,26 +32,28 @@ namespace School.Repository.Data
             _context = context;
         }
 
-        public async Task<bool> CreateRoom()
+        public List<Room> Room()
         {
             try
             {
+                _listRoom = new List<Room>();
                 for (int n = 0; n < 9; n++)
                 {
                     _room = new Room();
                     _room.Identifier = rooms(n, 0);
                     _room.Description = rooms(n, 1);
-                    _context.Add(_room);
+                    // _context.Add(_room);
+                    _listRoom.Add(_room);
                 }
 
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
             }
             catch (System.Exception)
             {
-                return false;
+
             }
 
-            return true;
+            return _listRoom;
         }
         public string rooms(int p, int s)
         {
@@ -108,6 +113,8 @@ namespace School.Repository.Data
             _unit.Neighborhood = unit0[3];
             _unit.City = unit0[4];
             _unit.State = unit0[5];
+            _unit.UnitRoom = Room();
+            _unit.UnitCAccount = CAccount();
             _listunit.Add(_unit);
             // _context.Add(_unit);
             //await _context.SaveChangesAsync();
@@ -127,6 +134,7 @@ namespace School.Repository.Data
             _unit.Neighborhood = unt1[3];
             _unit.City = unt1[4];
             _unit.State = unt1[5];
+            _unit.UnitCAccount = CAccount();
             _listunit.Add(_unit);
             // _context.Add(_unit);
             //await _context.SaveChangesAsync();
@@ -146,13 +154,16 @@ namespace School.Repository.Data
             _unit.City = unt2[4];
             _unit.State = unt2[5];
             _listunit.Add(_unit);
+            _unit.UnitCAccount = CAccount();
             // _context.Add(_unit);
             //await _context.SaveChangesAsync();
             return _listunit;
         }
 
-        public async Task<bool> CAccount()
+        public List<CheckingAccount> CAccount()
         {
+
+            _listCheckingAccount = new List<CheckingAccount>();
 
             string[] ccString0 = new string[] { "Itau", "Poupança", "Positivo" };
 
@@ -165,9 +176,9 @@ namespace School.Repository.Data
             _checkingAccount.Account = ccInt0[1];
             _checkingAccount.Type = ccString0[1];
             _checkingAccount.Status = ccString0[2];
-
-            _context.Add(_checkingAccount);
-            await _context.SaveChangesAsync();
+            _listCheckingAccount.Add(_checkingAccount);
+            //_context.Add(_checkingAccount);
+            // await _context.SaveChangesAsync();
 
             //-----------------------------------//
 
@@ -183,8 +194,9 @@ namespace School.Repository.Data
             _checkingAccount.Type = ccString1[1];
             _checkingAccount.Status = ccString1[2];
 
-            _context.Add(_checkingAccount);
-            await _context.SaveChangesAsync();
+            _listCheckingAccount.Add(_checkingAccount);
+            //_context.Add(_checkingAccount);
+            // await _context.SaveChangesAsync();
 
             //-----------------------------------//
 
@@ -199,9 +211,11 @@ namespace School.Repository.Data
             _checkingAccount.Account = ccInt2[1];
             _checkingAccount.Type = ccString2[1];
             _checkingAccount.Status = ccString2[2];
+            _listCheckingAccount.Add(_checkingAccount);
 
-            _context.Add(_checkingAccount);
-            return await _context.SaveChangesAsync() > 0;
+            //    _context.Add(_checkingAccount);
+            //    return await _context.SaveChangesAsync() > 0;
+            return _listCheckingAccount;
         }
 
         public List<InstantMessage> InstantM()
@@ -213,7 +227,7 @@ namespace School.Repository.Data
             {
                 _instantMessage = new InstantMessage();
                 _instantMessage.Name = im;
-                _context.Add(_instantMessage);
+                // _context.Add(_instantMessage);
                 Lims.Add(_instantMessage);
             }
 
@@ -428,7 +442,7 @@ namespace School.Repository.Data
             return _listStudent;
         }
 
-        public bool Teacher()
+        public List<Teacher> Teacher()
         {
             try
             {
@@ -495,16 +509,35 @@ namespace School.Repository.Data
                 _ListTeachers.Add(_teachers);
                 //  _context.Add(_teachers);
                 // return await _context.SaveChangesAsync() > 0;
-                return true;
             }
             catch (System.Exception)
             {
-                return false;
-            }
 
+            }
+            return _ListTeachers;
         }
 
+        public async Task<bool> Classes()
+        {
 
+            Teacher[] stus = Teacher().ToArray();
+            Discipline[] disp = Discipline().ToArray();
+            Room[] rms = Room().ToArray();
+            Unit[] unt = Unit().ToArray();
+
+
+            _classes = new Class();
+            _classes.Teacher = stus[0];
+            _classes.Start = DateTime.Now;
+            _classes.End = DateTime.Now;
+            _classes.Discipline = disp[0];
+            _classes.Students = Student();
+            _classes.Unit = unt[0];
+            _classes.room = rms[0];
+            _context.Add(_classes);
+
+            return await _context.SaveChangesAsync() > 0;
+        }
 
 
     }
