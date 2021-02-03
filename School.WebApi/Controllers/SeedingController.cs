@@ -9,9 +9,9 @@ namespace School.WebApi.Controllers
     [Route("api/{controller}")]
     public class SeedingController : ControllerBase
     {
-        public SeedingService _seeding { get; set; }
+        public Seeding _seeding { get; set; }
 
-        public SeedingController(SeedingService seeding)
+        public SeedingController(Seeding seeding)
         {
             _seeding = seeding;
         }

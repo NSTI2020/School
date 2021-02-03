@@ -7,7 +7,8 @@ namespace School.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Room> UnitRoom { get; set; } = new List<Room>();
+        public int RoomsId { get; set; }
+        public List<Room> Rooms { get; set; } = new List<Room>();
         //Address
         public string Street { get; set; }
         public string Number { get; set; }
@@ -15,7 +16,8 @@ namespace School.Domain.Entities
         public string City { get; set; }
         public string State { get; set; }
         public string Complement { get; set; }
-        public List<CheckingAccount> UnitCAccount { get; set; } = new List<CheckingAccount>();
+        public int CheckingAccountsId { get; set; }
+        public List<CheckingAccount> CheckingAccounts { get; set; } = new List<CheckingAccount>();
 
     }
 }

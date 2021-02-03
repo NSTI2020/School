@@ -15,6 +15,7 @@ namespace School.Domain.Entities
         public List<Student> Students { get; set; }
         public int UnitId { get; set; }
         public Unit Unit { get; set; }
-        public Room room { get; set; }
+        public int roomId { get; set; }
+        public Room Room { get; set; }
     }
 }

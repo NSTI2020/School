@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace School.WebApi.Migrations
 {
-    public partial class _39 : Migration
+    public partial class _46 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,12 +31,14 @@ namespace School.WebApi.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
+                    RoomsId = table.Column<int>(nullable: false),
                     Street = table.Column<string>(nullable: true),
                     Number = table.Column<string>(nullable: true),
                     Neighborhood = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
-                    Complement = table.Column<string>(nullable: true)
+                    Complement = table.Column<string>(nullable: true),
+                    CheckingAccountsId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -144,6 +146,7 @@ namespace School.WebApi.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Identifier = table.Column<string>(nullable: true),
+                    Capacity = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     UnitId = table.Column<int>(nullable: true)
                 },
@@ -224,7 +227,7 @@ namespace School.WebApi.Migrations
                     End = table.Column<DateTime>(nullable: false),
                     DisciplineId = table.Column<int>(nullable: false),
                     UnitId = table.Column<int>(nullable: false),
-                    roomId = table.Column<int>(nullable: true)
+                    roomId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -252,7 +255,7 @@ namespace School.WebApi.Migrations
                         column: x => x.roomId,
                         principalTable: "Rooms",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -263,22 +266,26 @@ namespace School.WebApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_DisciplineId",
                 table: "Classes",
-                column: "DisciplineId");
+                column: "DisciplineId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_TeacherId",
                 table: "Classes",
-                column: "TeacherId");
+                column: "TeacherId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_UnitId",
                 table: "Classes",
-                column: "UnitId");
+                column: "UnitId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_roomId",
                 table: "Classes",
-                column: "roomId");
+                column: "roomId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Disciplines_StudentId",
@@ -313,7 +320,8 @@ namespace School.WebApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Students_ContactId",
                 table: "Students",
-                column: "ContactId");
+                column: "ContactId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_ContactId",
