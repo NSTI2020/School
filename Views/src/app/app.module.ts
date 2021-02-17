@@ -1,3 +1,8 @@
+//Testes
+//import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 //native modules
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -24,7 +29,10 @@ import { UnitCreateComponent } from './organization/components/unit/unit-create/
 import { UnitEditComponent } from './organization/components/unit/unit-edit/unit-edit.component';
 import { ChekingaccountCreateComponent } from './organization/components/checking-account/chekingaccount-create/chekingaccount-create.component';
 import { AdminComponent } from './organization/components/control-panel/admin/admin.component';
-import { ClassesListComponent } from './organization/scheduleclass/classes-list/classes-list.component'
+import { ClassesListComponent } from './organization/components/scheduleclass/classes-list/classes-list.component'
+
+
+
 
 
 @NgModule({
@@ -53,7 +61,26 @@ import { ClassesListComponent } from './organization/scheduleclass/classes-list/
     MaterialModule,
     HelpersModule,
     DefaultRoutingModule,
-    AnimationsModule
+    AnimationsModule,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
