@@ -1,3 +1,4 @@
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using School.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore;
+
 
 namespace School.WebApi
 {
@@ -30,10 +32,15 @@ namespace School.WebApi
         {
             services.AddControllers();
             services.AddScoped<ISchoolRepository, SchoolRepository>();
-            services.AddScoped<SeedingService>();
+            services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddDbContext<SchoolDbContext>(
                 MySql => MySql.UseMySql(Configuration.GetConnectionString("SchoolBd"),
                 migration => migration.MigrationsAssembly("School.WebApi")));
+
+
+
+            services.AddScoped<SeedingService>();
+            services.AddScoped<Seeding>();
 
         }
 

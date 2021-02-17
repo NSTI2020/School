@@ -17,6 +17,35 @@ namespace School.WebApi.Migrations
                 .HasAnnotation("ProductVersion", "3.1.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("School.Domain.Entities.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Complement")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Neighborhood")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("State")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("School.Domain.Entities.CheckingAccount", b =>
                 {
                     b.Property<int>("Id")
@@ -66,6 +95,9 @@ namespace School.WebApi.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TeacherId")
                         .HasColumnType("int");
 
@@ -109,6 +141,12 @@ namespace School.WebApi.Migrations
 
                     b.Property<string>("HomePhone")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("instantMessageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("socialNetworkId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -214,16 +252,16 @@ namespace School.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ClassId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Complement")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<int>("ContactId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DisciplineId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -232,19 +270,10 @@ namespace School.WebApi.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Neighborhood")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("State")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId")
+                        .IsUnique();
 
                     b.HasIndex("ClassId");
 
@@ -260,13 +289,13 @@ namespace School.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Complement")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ContactId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DisciplineId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -275,21 +304,13 @@ namespace School.WebApi.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Neighborhood")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("State")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ContactId");
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
+                    b.HasIndex("ContactId")
+                        .IsUnique();
 
                     b.ToTable("Teachers");
                 });
@@ -300,34 +321,21 @@ namespace School.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CheckingAccountsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("City")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Complement")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Neighborhood")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Number")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("RoomsId")
                         .HasColumnType("int");
 
-                    b.Property<string>("State")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.ToTable("Units");
                 });
@@ -400,6 +408,12 @@ namespace School.WebApi.Migrations
 
             modelBuilder.Entity("School.Domain.Entities.Student", b =>
                 {
+                    b.HasOne("School.Domain.Entities.Address", "Address")
+                        .WithOne()
+                        .HasForeignKey("School.Domain.Entities.Student", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("School.Domain.Entities.Class", null)
                         .WithMany("Students")
                         .HasForeignKey("ClassId");
@@ -413,9 +427,24 @@ namespace School.WebApi.Migrations
 
             modelBuilder.Entity("School.Domain.Entities.Teacher", b =>
                 {
+                    b.HasOne("School.Domain.Entities.Address", "Address")
+                        .WithOne()
+                        .HasForeignKey("School.Domain.Entities.Teacher", "AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("School.Domain.Entities.Contact", "Contact")
+                        .WithOne()
+                        .HasForeignKey("School.Domain.Entities.Teacher", "ContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("School.Domain.Entities.Unit", b =>
+                {
+                    b.HasOne("School.Domain.Entities.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("ContactId")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

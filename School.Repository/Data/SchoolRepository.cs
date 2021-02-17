@@ -44,9 +44,20 @@ namespace School.Repository.Data
             throw new System.NotImplementedException();
         }
 
-        public Task<Class[]> GetAllClassAsync()
+        public async Task<Class[]> GetAllClassesAsync()
         {
-            throw new System.NotImplementedException();
+            IQueryable<Class> query = _context.Classes
+            .AsNoTracking()
+            .Include(_teacher => _teacher.Discipline)
+            .Include(_student => _student.Students)
+            .Include(_discipline => _discipline.Discipline)
+            .Include(_unit => _unit.Unit);
+
+            query = query.OrderBy(_start => _start.Start);
+
+
+            return await query.ToArrayAsync();
+
         }
 
         public Task<Contact[]> GetAllContactAsync()

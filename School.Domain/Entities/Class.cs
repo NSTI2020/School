@@ -12,6 +12,7 @@ namespace School.Domain.Entities
         public DateTime End { get; set; }
         public int DisciplineId { get; set; }
         public Discipline Discipline { get; set; }
+        public int StudentId { get; set; }
         public List<Student> Students { get; set; }
         public int UnitId { get; set; }
         public Unit Unit { get; set; }

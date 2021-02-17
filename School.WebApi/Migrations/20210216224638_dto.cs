@@ -4,10 +4,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace School.WebApi.Migrations
 {
-    public partial class _46 : Migration
+    public partial class dto : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Street = table.Column<string>(nullable: true),
+                    Number = table.Column<string>(nullable: true),
+                    Neighborhood = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Complement = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
@@ -17,7 +35,9 @@ namespace School.WebApi.Migrations
                     CellPhone = table.Column<string>(nullable: true),
                     HomePhone = table.Column<string>(nullable: true),
                     ComercialPhone = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true)
+                    Email = table.Column<string>(nullable: true),
+                    instantMessageId = table.Column<int>(nullable: false),
+                    socialNetworkId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,17 +52,18 @@ namespace School.WebApi.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     RoomsId = table.Column<int>(nullable: false),
-                    Street = table.Column<string>(nullable: true),
-                    Number = table.Column<string>(nullable: true),
-                    Neighborhood = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    Complement = table.Column<string>(nullable: true),
-                    CheckingAccountsId = table.Column<int>(nullable: false)
+                    CheckingAccountsId = table.Column<int>(nullable: false),
+                    AddressId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Units", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Units_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,16 +117,18 @@ namespace School.WebApi.Migrations
                     Name = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     ContactId = table.Column<int>(nullable: false),
-                    Street = table.Column<string>(nullable: true),
-                    Number = table.Column<string>(nullable: true),
-                    Neighborhood = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    Complement = table.Column<string>(nullable: true)
+                    DisciplineId = table.Column<int>(nullable: false),
+                    AddressId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teachers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Teachers_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Teachers_Contacts_ContactId",
                         column: x => x.ContactId,
@@ -170,17 +193,19 @@ namespace School.WebApi.Migrations
                     Name = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     ContactId = table.Column<int>(nullable: false),
-                    Street = table.Column<string>(nullable: true),
-                    Number = table.Column<string>(nullable: true),
-                    Neighborhood = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    Complement = table.Column<string>(nullable: true),
+                    DisciplineId = table.Column<int>(nullable: false),
+                    AddressId = table.Column<int>(nullable: false),
                     ClassId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Students_Contacts_ContactId",
                         column: x => x.ContactId,
@@ -226,6 +251,7 @@ namespace School.WebApi.Migrations
                     Start = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: false),
                     DisciplineId = table.Column<int>(nullable: false),
+                    StudentId = table.Column<int>(nullable: false),
                     UnitId = table.Column<int>(nullable: false),
                     roomId = table.Column<int>(nullable: false)
                 },
@@ -313,6 +339,12 @@ namespace School.WebApi.Migrations
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Students_AddressId",
+                table: "Students",
+                column: "AddressId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Students_ClassId",
                 table: "Students",
                 column: "ClassId");
@@ -324,9 +356,21 @@ namespace School.WebApi.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Teachers_AddressId",
+                table: "Teachers",
+                column: "AddressId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Teachers_ContactId",
                 table: "Teachers",
-                column: "ContactId");
+                column: "ContactId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Units_AddressId",
+                table: "Units",
+                column: "AddressId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Students_Classes_ClassId",
@@ -377,6 +421,9 @@ namespace School.WebApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rooms");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Contacts");

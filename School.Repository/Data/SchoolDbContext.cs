@@ -5,6 +5,8 @@ namespace School.Repository.Data
 {
     public class SchoolDbContext : DbContext
     {
+
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<CheckingAccount> CheckingAccounts { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Contact> Contacts { get; set; }
@@ -13,8 +15,7 @@ namespace School.Repository.Data
         public DbSet<SocialNetwork> socialNetworks { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
-        //   public DbSet<DisciplineStudent> DisciplinesStudents { get; set; }
-        // public DbSet<DisciplineTeacher> DisciplinesTeachers { get; set; }
+
         public DbSet<Unit> Units { get; set; }
         public SchoolDbContext(DbContextOptions<SchoolDbContext> options) : base(options)
         {
@@ -23,6 +24,8 @@ namespace School.Repository.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Address>().HasKey(_id => _id.Id);
+
             builder.Entity<Contact>().HasKey(_id => _id.Id);
             builder.Entity<Contact>().HasMany(_instantMessage => _instantMessage.instantMessage).WithOne();
             builder.Entity<Contact>().HasMany(_socialNetwork => _socialNetwork.socialNetwork).WithOne();
@@ -34,6 +37,13 @@ namespace School.Repository.Data
             builder.Entity<Student>().HasKey(_id => _id.Id);
             builder.Entity<Student>().HasOne(_contact => _contact.Contact).WithOne();
             builder.Entity<Student>().HasMany(_discipline => _discipline.Discipline).WithOne();
+            builder.Entity<Student>().HasOne(_address => _address.Address).WithOne();
+
+
+            builder.Entity<Teacher>().HasKey(_id => _id.Id);
+            builder.Entity<Teacher>().HasOne(_contact => _contact.Contact).WithOne();
+            builder.Entity<Teacher>().HasMany(_discipline => _discipline.Discipline).WithOne();
+            builder.Entity<Teacher>().HasOne(_address => _address.Address).WithOne();
 
             builder.Entity<Class>().HasKey(_id => _id.Id);
             builder.Entity<Class>().HasOne(_teacher => _teacher.Teacher).WithOne();

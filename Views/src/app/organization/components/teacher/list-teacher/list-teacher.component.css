@@ -1,0 +1,10 @@
+table#teachertable td {
+  padding: 20px;
+}
+
+table#teachertable th {
+  padding-right: 70px;
+  font-size: 30px;
+}
+h3 {
+}

@@ -26,9 +26,11 @@ namespace School.Repository.Data
         private List<Discipline> _listDisciplines { get; set; }
         private List<Student> _listStudent { get; set; }
         private Student _student { get; set; }
-        public List<Student> ListStudent0 = null;
-        public List<Student> ListStudent1 = null;
-        public List<Student> ListStudent2 = null;
+        private Address _address { get; set; }
+        private List<Address> _listAddress { get; set; } = new List<Address>();
+        public List<Student> ListStudent0 { get; set; } = new List<Student>();
+        public List<Student> ListStudent1 { get; set; } = new List<Student>();
+        public List<Student> ListStudent2 { get; set; } = new List<Student>();
         private List<Teacher> _ListTeachers { get; set; }
         private Teacher _teachers { get; set; }
         private Class _classes { get; set; }
@@ -99,8 +101,6 @@ namespace School.Repository.Data
             return Identifier[e, d];
         }
 
-
-        //------------///////
         public List<Discipline> Discipline()
         {
             _listDisciplines = new List<Discipline>();
@@ -132,6 +132,8 @@ namespace School.Repository.Data
 
         public List<Unit> Unit()
         {
+
+
             _listunit = new List<Unit>();
             string[] unit0 = new string[] { "Cidade Nova",
             "R. Prof. Costa Chiabi",
@@ -139,14 +141,16 @@ namespace School.Repository.Data
             "Cidade Nova",
             "Belo Horizonte",
             "MG"};
+            Address _address0 = new Address();
+            _address.Street = unit0[1];
+            _address.Number = unit0[2];
+            _address.Neighborhood = unit0[3];
+            _address.City = unit0[4];
+            _address.State = unit0[5];
 
             _unit = new Unit();
             _unit.Name = unit0[0];
-            _unit.Street = unit0[1];
-            _unit.Number = unit0[2];
-            _unit.Neighborhood = unit0[3];
-            _unit.City = unit0[4];
-            _unit.State = unit0[5];
+            _unit.Address = _address0;
             _unit.Rooms = Rooms(0);
             _unit.CheckingAccounts = CAccount();
             _listunit.Add(_unit);
@@ -160,14 +164,16 @@ namespace School.Repository.Data
             ,"Lourdes"
             ,"Belo Horizonte"
             ,"MG"};
+            Address _address1 = new Address();
+            _address.Street = unt1[1];
+            _address.Number = unt1[2];
+            _address.Neighborhood = unt1[3];
+            _address.City = unt1[4];
+            _address.State = unt1[5];
 
             _unit = new Unit();
             _unit.Name = unt1[0];
-            _unit.Street = unt1[1];
-            _unit.Number = unt1[2];
-            _unit.Neighborhood = unt1[3];
-            _unit.City = unt1[4];
-            _unit.State = unt1[5];
+            _unit.Address = _address1;
             _unit.Rooms = Rooms(1);
             _unit.CheckingAccounts = CAccount();
             _listunit.Add(_unit);
@@ -181,13 +187,16 @@ namespace School.Repository.Data
             ,"Belo Horizonte"
             ,"MG"};
 
+            Address _address2 = new Address();
+            _address.Street = unt2[1];
+            _address.Number = unt2[2];
+            _address.Neighborhood = unt2[3];
+            _address.City = unt2[4];
+            _address.State = unt2[5];
+
             _unit = new Unit();
             _unit.Name = unt2[0];
-            _unit.Street = unt2[1];
-            _unit.Number = unt2[2];
-            _unit.Neighborhood = unt2[3];
-            _unit.City = unt2[4];
-            _unit.State = unt2[5];
+            _unit.Address = _address2;
             _unit.Rooms = Rooms(2);
             _unit.CheckingAccounts = CAccount();
             _listunit.Add(_unit);
@@ -452,7 +461,7 @@ namespace School.Repository.Data
             string[] contact01 = new string[] { "315887-78-5658",
         "313344556622",
         "nullo",
-        "Aluno01@Aluno01.com.br"
+        "Professor01@Aluno01.com.br"
         };
             _contact.CellPhone = contact01[0];
             _contact.HomePhone = contact01[1];
@@ -588,11 +597,195 @@ namespace School.Repository.Data
 
 
         }
+        public string[] AddressBase(int addrArray, string entity)
+        {
+            if (entity.ToUpper().Contains("STUDENT"))
+            {
+                string[] sts0 = new string[]
+                                          {"Rua do Aluno0", "000",
+            "Bairro Aluno0","Cidade Aluno0", "Estado Aluno0","ComplementoALuno0"  };
+
+                string[] sts1 = new string[]
+                {"Rua do Aluno1", "111",
+            "Bairro Aluno1","Cidade Aluno1", "Estado Aluno1","ComplementoALuno1"  };
+
+                string[] sts2 = new string[]
+                {"Rua do Aluno2", "222",
+            "Bairro Aluno2","Cidade Aluno2", "Estado Aluno2","ComplementoALuno2"  };
+                string[] sts3 = new string[]
+               {"Rua do Aluno3", "333",
+            "Bairro Aluno3","Cidade Aluno3", "Estado Aluno3","ComplementoALuno3"  };
+
+                string[] sts4 = new string[]
+                {"Rua do Aluno4", "444",
+            "Bairro Aluno4","Cidade Aluno4", "Estado Aluno4","ComplementoALuno4"  };
+
+                string[] sts5 = new string[]
+                {"Rua do Aluno5", "555",
+            "Bairro Aluno5","Cidade Aluno5", "Estado Aluno5","ComplementoALuno5"  };
+
+                string[] sts6 = new string[]
+                           {"Rua do Aluno6", "666",
+            "Bairro Aluno6","Cidade Aluno6", "Estado Aluno6","ComplementoALuno6"  };
+
+                string[] sts7 = new string[]
+                {"Rua do Aluno7", "777",
+            "Bairro Aluno7","Cidade Aluno7", "Estado Aluno7","ComplementoALuno7"  };
+
+                string[] sts8 = new string[]
+                {"Rua do Aluno8", "888",
+            "Bairro Aluno8","Cidade Aluno8", "Estado Aluno8","ComplementoALuno8"  };
+
+                switch (addrArray)
+                {
+                    case 0:
+                        return sts0;
+                    case 1:
+                        return sts1;
+                    case 2:
+                        return sts2;
+                    case 3:
+                        return sts3;
+                    case 4:
+                        return sts4;
+                    case 5:
+                        return sts5;
+                    case 6:
+                        return sts6;
+                    case 7:
+                        return sts7;
+                    case 8:
+                        return sts8;
+                }
+            }
+            else if (entity.ToUpper().Contains("TEACHER"))
+            {
+                string[] tch0 = new string[]
+                {"Teacher0", "SobreNome Teacher0", "Rua do Teacher0", "000",
+            "Bairro Teacher0","Cidade Teacher0", "Estado Teacher0","ComplementoTeacher0"  };
+
+                string[] tch1 = new string[]
+                {"Teacher1", "SobreNome Teacher1", "Rua do Teacher1", "111",
+            "Bairro Teacher1","Cidade Teacher1", "Estado Teacher1","ComplementoTeacher1"  };
+
+                string[] tch2 = new string[]
+                {"Teacher2", "SobreNome Teacher2", "Rua do Teacher2", "222",
+            "Bairro Teacher2","Cidade Teacher2", "Estado Teacher2","ComplementoTeacher2"  };
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                string[] tch3 = new string[]
+               {"Teacher3", "SobreNome Teacher3", "Rua do Teacher3", "333",
+            "Bairro Teacher3","Cidade Teacher3", "Estado Teacher3","ComplementoTeacher3"  };
+
+                string[] tch4 = new string[]
+                {"Teacher4", "SobreNome Teacher4", "Rua do Teacher4", "444",
+            "Bairro Teacher4","Cidade Teacher4", "Estado Teacher4","ComplementoTeacher4"  };
+
+                string[] tch5 = new string[]
+                {"Teacher5", "SobreNome Teacher5", "Rua do Teacher5", "555",
+            "Bairro Teacher5","Cidade Teacher5", "Estado Teacher5","ComplementoTeacher5"  };
+
+                string[] tch6 = new string[]
+                           {"Teacher6", "SobreNome Teacher6", "Rua do Teacher6", "666",
+            "Bairro Teacher6","Cidade Teacher6", "Estado Teacher6","ComplementoTeacher6"  };
+
+                switch (addrArray)
+                {
+                    case 0:
+                        return tch0;
+                    case 1:
+                        return tch1;
+                    case 2:
+                        return tch2;
+                    case 3:
+                        return tch3;
+                    case 4:
+                        return tch4;
+                    case 5:
+                        return tch5;
+                    case 6:
+                        return tch6;
+                }
+
+
+            }
+            else if (entity.ToUpper().Contains("UNIT"))
+            {
+                string[] unt0 = new string[] { "Cidade Nova",
+            "R. Prof. Costa Chiabi",
+            "95",
+            "Cidade Nova",
+            "Belo Horizonte",
+            "MG"};
+                string[] unt1 = new string[] {  "Lordes"
+            ,"R. Espírito Santo"
+            ,"1481"
+            ,"Lourdes"
+            ,"Belo Horizonte"
+            ,"MG"};
+                string[] unt2 = new string[] { "Santa Mônica"
+            ,"R. Érico Veríssimo"
+            ,"1229"
+            ,"Santa Mônica"
+            ,"Belo Horizonte"
+            ,"MG"};
+
+                switch (addrArray)
+                {
+                    case 0:
+                        return unt0;
+                    case 1:
+                        return unt1;
+                    case 2:
+                        return unt2;
+                }
+
+            }
+            return null;
+        }
+        public List<Address> Addresses(string entity)
+        {
+            _listAddress = new List<Address>();
+
+            if (entity.ToUpper().Contains("STUDENT"))
+            {
+
+                for (int n = 0; n < 9; n++)
+                {
+                    _address = new Address();
+                    _address.Street = AddressBase(n, entity)[0];
+                    _address.Number = AddressBase(n, entity)[1];
+                    _address.Neighborhood = AddressBase(n, entity)[2];
+                    _address.City = AddressBase(n, entity)[3];
+                    _address.State = AddressBase(n, entity)[4];
+                    _address.Complement = AddressBase(n, entity)[5];
+                    _listAddress.Add(_address);
+                }
+
+                return _listAddress;
+            }
+            else if (entity.ToUpper().Contains("TEACHER"))
+            {
+                for (int n = 0; n < 6; n++)
+                {
+                    _address = new Address();
+                    _address.Street = AddressBase(n, entity)[0];
+                    _address.Number = AddressBase(n, entity)[1];
+                    _address.Neighborhood = AddressBase(n, entity)[2];
+                    _address.City = AddressBase(n, entity)[3];
+                    _address.State = AddressBase(n, entity)[4];
+                    _address.Complement = AddressBase(n, entity)[5];
+                    _listAddress.Add(_address);
+                }
+                return _listAddress;
+            }
+
+            return null;
+        }
 
         public List<Student> Student(int list)
         {
             _listStudent = new List<Student>();
-
+            Address[] addr = Addresses("STUDENT").ToArray();
 
 
             string[] sts0 = new string[]
@@ -606,7 +799,7 @@ namespace School.Repository.Data
             string[] sts2 = new string[]
             {"Aluno2", "SobreNome Aluno2", "Rua do Aluno2", "222",
             "Bairro Aluno2","Cidade Aluno2", "Estado Aluno2","ComplementoALuno2"  };
-            ///////////////////////////////////////////////////////////////////////////////////////////////////
+
             string[] sts3 = new string[]
            {"Aluno3", "SobreNome Aluno3", "Rua do Aluno3", "333",
             "Bairro Aluno3","Cidade Aluno3", "Estado Aluno3","ComplementoALuno3"  };
@@ -631,6 +824,7 @@ namespace School.Repository.Data
             {"Aluno8", "SobreNome Aluno8", "Rua do Aluno8", "888",
             "Bairro Aluno8","Cidade Aluno8", "Estado Aluno8","ComplementoALuno8"  };
 
+
             Contact[] stus = Contact().ToArray();
             Discipline[] dis = Discipline().ToArray();
 
@@ -643,12 +837,7 @@ namespace School.Repository.Data
             _student.LastName = sts0[1];
             _student.Discipline = listDisciplinesStudent0;
             _student.Contact = stus[0];
-            _student.Street = sts0[2];
-            _student.Number = sts0[3];
-            _student.Neighborhood = sts0[4];
-            _student.City = sts0[5];
-            _student.State = sts0[6];
-            _student.Complement = sts0[7];
+            _student.Address = addr[0];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -660,12 +849,7 @@ namespace School.Repository.Data
             _student.LastName = sts1[1];
             _student.Discipline = listDisciplinesStudent1;
             _student.Contact = stus[1];
-            _student.Street = sts1[2];
-            _student.Number = sts1[3];
-            _student.Neighborhood = sts1[4];
-            _student.City = sts1[5];
-            _student.State = sts1[6];
-            _student.Complement = sts1[7];
+            _student.Address = addr[1];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -677,12 +861,7 @@ namespace School.Repository.Data
             _student.LastName = sts2[1];
             _student.Discipline = listDisciplinesStudent2;
             _student.Contact = stus[2];
-            _student.Street = sts2[2];
-            _student.Number = sts2[3];
-            _student.Neighborhood = sts2[4];
-            _student.City = sts2[5];
-            _student.State = sts2[6];
-            _student.Complement = sts2[7];
+            _student.Address = addr[2];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -694,12 +873,7 @@ namespace School.Repository.Data
             _student.LastName = sts3[1];
             _student.Discipline = listDisciplinesStudent3;
             _student.Contact = stus[3];
-            _student.Street = sts3[2];
-            _student.Number = sts3[3];
-            _student.Neighborhood = sts3[4];
-            _student.City = sts3[5];
-            _student.State = sts3[6];
-            _student.Complement = sts3[7];
+            _student.Address = addr[3];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -711,12 +885,7 @@ namespace School.Repository.Data
             _student.LastName = sts4[1];
             _student.Discipline = listDisciplinesStudent4;
             _student.Contact = stus[4];
-            _student.Street = sts4[2];
-            _student.Number = sts4[3];
-            _student.Neighborhood = sts4[4];
-            _student.City = sts4[5];
-            _student.State = sts4[6];
-            _student.Complement = sts4[7];
+            _student.Address = addr[4];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -728,12 +897,7 @@ namespace School.Repository.Data
             _student.LastName = sts5[1];
             _student.Discipline = listDisciplinesStudent5;
             _student.Contact = stus[5];
-            _student.Street = sts5[2];
-            _student.Number = sts5[3];
-            _student.Neighborhood = sts5[4];
-            _student.City = sts5[5];
-            _student.State = sts5[6];
-            _student.Complement = sts5[7];
+            _student.Address = addr[5];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -746,12 +910,7 @@ namespace School.Repository.Data
             _student.LastName = sts6[1];
             _student.Discipline = listDisciplinesStudent6;
             _student.Contact = stus[6];
-            _student.Street = sts6[2];
-            _student.Number = sts6[3];
-            _student.Neighborhood = sts6[4];
-            _student.City = sts6[5];
-            _student.State = sts6[6];
-            _student.Complement = sts6[7];
+            _student.Address = addr[6];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -763,12 +922,7 @@ namespace School.Repository.Data
             _student.LastName = sts2[1];
             _student.Discipline = listDisciplinesStudent7;
             _student.Contact = stus[7];
-            _student.Street = sts2[2];
-            _student.Number = sts2[3];
-            _student.Neighborhood = sts2[4];
-            _student.City = sts2[5];
-            _student.State = sts2[6];
-            _student.Complement = sts2[7];
+            _student.Address = addr[7];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -780,12 +934,7 @@ namespace School.Repository.Data
             _student.LastName = sts8[1];
             _student.Discipline = listDisciplinesStudent8;
             _student.Contact = stus[8];
-            _student.Street = sts8[2];
-            _student.Number = sts8[3];
-            _student.Neighborhood = sts8[4];
-            _student.City = sts8[5];
-            _student.State = sts8[6];
-            _student.Complement = sts8[7];
+            _student.Address = addr[8];
             _listStudent.Add(_student);
             //_context.Add(_student);
             //await _context.SaveChangesAsync();
@@ -810,47 +959,73 @@ namespace School.Repository.Data
 
         public List<Teacher> Teacher()
         {
+            _ListTeachers = new List<Teacher>();
+            Address[] addr = Addresses("TEACHER").ToArray();
+
+            Contact[] contacts = Contact().ToArray();
+            Discipline[] dis = Discipline().ToArray();
+
+            string[] tch0 = new string[]
+            {"Professor0", "SobreNome Professor0", "Rua do Professor0", "000",
+            "Bairro Professor0","Cidade Professor0", "Estado Professor0","ComplementoProfessor0"  };
+
+            string[] tch1 = new string[]
+            {"Professor1", "SobreNome Professor1", "Rua do Professor1", "111",
+            "Bairro Professor1","Cidade Professor1", "Estado Professor1","ComplementoProfessor1"  };
+
+            string[] tch2 = new string[]
+            {"Professor2", "SobreNome Professor2", "Rua do Professor2", "222",
+            "Bairro Professor2","Cidade Professor2", "Estado Professor2","ComplementoProfessor2"  };
+
+            string[] tch3 = new string[]
+           {"Professor3", "SobreNome Professor3", "Rua do Professor3", "333",
+            "Bairro Professor3","Cidade Professor3", "Estado Professor3","ComplementoProfessor3"  };
+
+            string[] tch4 = new string[]
+            {"Professor4", "SobreNome Professor4", "Rua do Professor4", "444",
+            "Bairro Professor4","Cidade Professor4", "Estado Professor4","ComplementoProfessor4"  };
+
+            string[] tch5 = new string[]
+            {"Professor5", "SobreNome Professor5", "Rua do Professor5", "555",
+            "Bairro Professor5","Cidade Professor5", "Estado Professor5","ComplementoProfessor5"  };
+
+            string[] tch6 = new string[]
+                       {"Professor6", "SobreNome Professor6", "Rua do Professor6", "666",
+            "Bairro Professor6","Cidade Professor6", "Estado Professor6","ComplementoProfessor6"  };
+
+            string[] tch7 = new string[]
+            {"Professor7", "SobreNome Professor7", "Rua do Professor7", "777",
+            "Bairro Professor7","Cidade Professor7", "Estado Professor7","ComplementoProfessor7"  };
+
+            string[] tch8 = new string[]
+            {"Professor8", "SobreNome Professor8", "Rua do Professor8", "888",
+            "Bairro Professor8","Cidade Professor8", "Estado Professor8","ComplementoProfessor8"  };
+
             try
             {
-                _ListTeachers = new List<Teacher>();
-                Contact[] contacts = Contact().ToArray();
-                Discipline[] dis = Discipline().ToArray();
 
                 List<Discipline> listDisciplinesTeacher0 = new List<Discipline>();
+
                 listDisciplinesTeacher0.Add(dis[1]);
 
                 _teachers = new Teacher();
-                _teachers.Id = 1;
-                _teachers.Name = "Teacher0";
-                _teachers.LastName = "Teacher0UltimoNome";
+                _teachers.Name = tch0[0];
+                _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[3];
                 _teachers.Discipline = listDisciplinesTeacher0;
-                _teachers.Street = "RUA Teacher0";
-                _teachers.Number = "654321";
-                _teachers.Neighborhood = "Bairro Teacher0";
-                _teachers.City = "Cidade Teacher0";
-                _teachers.State = "Estado Teacher0";
-                _teachers.Complement = "Complemento Teacher0";
+                _teachers.Address = addr[0];
                 _ListTeachers.Add(_teachers);
                 //_context.Add(_teachers);
                 // await _context.SaveChangesAsync();
 
-
                 List<Discipline> listDisciplinesTeacher1 = new List<Discipline>();
                 listDisciplinesTeacher1.Add(dis[3]);
                 _teachers = new Teacher();
-                _teachers.Id = 2;
-                _teachers.Name = "Teacher1";
-                _teachers.LastName = "Teacher1UltimoNome";
+                _teachers.Name = tch0[0];
+                _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[4];
                 _teachers.Discipline = listDisciplinesTeacher1;
-                _teachers.Street = "RUA Teacher1";
-                _teachers.Number = "4151";
-                _teachers.Neighborhood = "Bairro Teacher1";
-                _teachers.City = "Cidade Teacher1";
-                _teachers.State = "Estado Teacher1";
-                _teachers.Complement = "Complemento Teacher1";
-
+                _teachers.Address = addr[1];
                 _ListTeachers.Add(_teachers);
                 //_context.Add(_teachers);
                 //await _context.SaveChangesAsync();
@@ -858,17 +1033,11 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher2 = new List<Discipline>();
                 listDisciplinesTeacher2.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Id = 3;
-                _teachers.Name = "Teacher2";
-                _teachers.LastName = "Teacher2UltimoNome";
+                _teachers.Name = tch0[0];
+                _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
                 _teachers.Discipline = listDisciplinesTeacher2;
-                _teachers.Street = "RUA Teacher2";
-                _teachers.Number = "7456";
-                _teachers.Neighborhood = "Bairro Teacher2";
-                _teachers.City = "Cidade Teacher2";
-                _teachers.State = "Estado Teacher2";
-                _teachers.Complement = "Complemento Teacher2";
+                _teachers.Address = addr[2];
                 _ListTeachers.Add(_teachers);
                 //  _context.Add(_teachers);
                 // return await _context.SaveChangesAsync() > 0;
@@ -876,17 +1045,11 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher3 = new List<Discipline>();
                 listDisciplinesTeacher3.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Id = 4;
-                _teachers.Name = "Teacher3";
-                _teachers.LastName = "Teacher3UltimoNome";
+                _teachers.Name = tch0[0];
+                _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
                 _teachers.Discipline = listDisciplinesTeacher3;
-                _teachers.Street = "RUA Teacher3";
-                _teachers.Number = "7456";
-                _teachers.Neighborhood = "Bairro Teacher3";
-                _teachers.City = "Cidade Teacher3";
-                _teachers.State = "Estado Teacher3";
-                _teachers.Complement = "Complemento Teacher3";
+                _teachers.Address = addr[3];
                 _ListTeachers.Add(_teachers);
                 //  _context.Add(_teachers);
                 // await _context.SaveChangesAsync() > 0;
@@ -894,41 +1057,26 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher4 = new List<Discipline>();
                 listDisciplinesTeacher4.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Id = 5;
-                _teachers.Name = "Teacher4";
-                _teachers.LastName = "Teacher4UltimoNome";
+                _teachers.Name = tch0[0];
+                _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
                 _teachers.Discipline = listDisciplinesTeacher4;
-                _teachers.Street = "RUA Teacher4";
-                _teachers.Number = "7456";
-                _teachers.Neighborhood = "Bairro Teacher4";
-                _teachers.City = "Cidade Teacher4";
-                _teachers.State = "Estado Teacher4";
-                _teachers.Complement = "Complemento Teacher4";
+                _teachers.Address = addr[4];
                 _ListTeachers.Add(_teachers);
                 //  _context.Add(_teachers);
                 // await _context.SaveChangesAsync() > 0;
-
-
                 List<Discipline> listDisciplinesTeacher5 = new List<Discipline>();
                 listDisciplinesTeacher5.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Id = 6;
-                _teachers.Name = "Teacher5";
-                _teachers.LastName = "Teacher5UltimoNome";
+                _teachers.Name = tch0[0];
+                _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
                 _teachers.Discipline = listDisciplinesTeacher5;
-                _teachers.Street = "RUA Teacher5";
-                _teachers.Number = "7456";
-                _teachers.Neighborhood = "Bairro Teacher5";
-                _teachers.City = "Cidade Teacher5";
-                _teachers.State = "Estado Teacher5";
-                _teachers.Complement = "Complemento Teacher5";
-                _ListTeachers.Add(_teachers);
+                _teachers.Address = addr[5];
                 //  _context.Add(_teachers);
                 // return await _context.SaveChangesAsync() > 0;
-
-
+                _ListTeachers.Add(_teachers);
+                return _ListTeachers;
             }
             catch (System.Exception)
             {
@@ -941,6 +1089,7 @@ namespace School.Repository.Data
         {
 
             Teacher[] teacher = Teacher().ToArray();
+
             Discipline[] disp = Discipline().ToArray();
             Room[] rms = Rooms(0).ToArray();
             Unit[] unt = Unit().ToArray();
@@ -960,7 +1109,7 @@ namespace School.Repository.Data
             _classes = new Class();
 
             _classes.Teacher = teacher[1];
-            // _classes.TeacherId = 2;
+            //  _classes.TeacherId = 2;
             _classes.Start = DateTime.Now;
             _classes.End = DateTime.Now;
             _classes.Discipline = disp[3];
@@ -971,7 +1120,7 @@ namespace School.Repository.Data
             /////////////////////////////////////////////////////
             _classes = new Class();
             _classes.Teacher = teacher[2];
-            // _classes.TeacherId = 3;
+            //   _classes.TeacherId = 3;
             _classes.Start = DateTime.Now;
             _classes.End = DateTime.Now;
             _classes.Discipline = disp[5];

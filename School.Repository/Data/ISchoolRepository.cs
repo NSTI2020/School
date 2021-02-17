@@ -22,7 +22,7 @@ namespace School.Repository.Data
 
 
         //Gets Class
-        Task<Class[]> GetAllClassAsync();
+        Task<Class[]> GetAllClassesAsync();
         Task<Class> GetClassByIdAsync(int Id);
 
         //Gets ChekingAccounts
