@@ -15,10 +15,11 @@ import { UnitCreateComponent } from '../components/unit/unit-create/unit-create.
 import { UnitEditComponent } from '../components/unit/unit-edit/unit-edit.component';
 import { ChekingaccountCreateComponent } from '../components/checking-account/chekingaccount-create/chekingaccount-create.component';
 import { AdminComponent } from '../components/control-panel/admin/admin.component'
+import { ClassListComponent } from '../components/control-panel/classes/class-list/class-list.component';
 
 const routes: Routes = [
     { path: 'sch', component: ScheduleclassComponent },
-    { path: '', component: AdminComponent }
+    { path: '', component: ClassListComponent }
 
 ];
 

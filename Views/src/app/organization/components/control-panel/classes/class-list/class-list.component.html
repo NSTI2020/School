@@ -1,0 +1,76 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <mat-list role="list">
+
+                    <th>
+                        <mat-list-item role="listitem">Id</mat-list-item>
+                    </th>
+
+                    <th>
+                        <mat-list-item role="listitem">Idioma</mat-list-item>
+                    </th>
+
+                    <th>
+                        <mat-list-item role="listitem">Unidade</mat-list-item>
+                    </th>
+
+                    <th>
+                        <mat-list-item role="listitem">Nome</mat-list-item>
+                    </th>
+                    <th>
+                        <mat-list-item role="listitem">Sala</mat-list-item>
+                    </th>
+                    <th>
+                        <mat-list-item role="listitem">Inicio</mat-list-item>
+                    </th>
+
+                    <th>
+                        <mat-list-item role="listitem">Fim</mat-list-item>
+                    </th>
+
+                </mat-list>
+            </tr>
+            <br>
+            <mat-divider></mat-divider>
+        </thead>
+        <tbody>
+            <tr>
+
+                <mat-list role="list">
+                    <mat-list-item *ngFor="let class of GetAllClassesReturn">
+                        <td>
+                            <mat-list-item role="listitem">{{class.id}}</mat-list-item>
+                        </td>
+
+                        <td>
+                            <mat-list-item role="listitem">{{class.discipline.language}}</mat-list-item>
+                        </td>
+
+                        <td>
+                            <mat-list-item role="listitem">{{class.unit.name}}</mat-list-item>
+                        </td>
+
+                        <td>
+                            <mat-list-item role="listitem">{{class.teacher.name}}</mat-list-item>
+                        </td>
+                        <td>
+                            <mat-list-item role="listitem">{{class.room.identifier}}</mat-list-item>
+                        </td>
+                        <td>
+                            <mat-list-item role="listitem">{{class.start}}</mat-list-item>
+                        </td>
+
+                        <td>
+                            <mat-list-item role="listitem">{{class.end}}</mat-list-item>
+                        </td>
+
+                    </mat-list-item>
+
+                </mat-list>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

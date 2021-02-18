@@ -14,7 +14,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 
@@ -35,6 +36,8 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatTableModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatDividerModule,
+
     ],
     exports: [
         MatButtonModule,
@@ -52,6 +55,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatTableModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatDividerModule,
 
 
     ]

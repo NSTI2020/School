@@ -48,10 +48,11 @@ namespace School.Repository.Data
         {
             IQueryable<Class> query = _context.Classes
             .AsNoTracking()
-            .Include(_teacher => _teacher.Discipline)
+            .Include(_teacher => _teacher.Teacher)
             .Include(_student => _student.Students)
             .Include(_discipline => _discipline.Discipline)
-            .Include(_unit => _unit.Unit);
+            .Include(_unit => _unit.Unit)
+            .Include(_room => _room.Room);
 
             query = query.OrderBy(_start => _start.Start);
 

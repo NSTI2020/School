@@ -7,13 +7,13 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
+
 //Organization
 import { MaterialModule } from './organization/modules/material.module';
 import { AnimationsModule } from './organization/modules/animations.module';
 
 //Components
 import { NavComponent } from './organization/components/nav/nav.component';
-
 import { HelpersModule } from './organization/helpers/helpers.module';
 import { HeaderComponent } from './organization/components/navigation/header/header.component';
 import { SidenavListComponent } from './organization/components/navigation/sidenav-list/sidenav-list.component';
@@ -29,10 +29,13 @@ import { UnitCreateComponent } from './organization/components/unit/unit-create/
 import { UnitEditComponent } from './organization/components/unit/unit-edit/unit-edit.component';
 import { ChekingaccountCreateComponent } from './organization/components/checking-account/chekingaccount-create/chekingaccount-create.component';
 import { AdminComponent } from './organization/components/control-panel/admin/admin.component';
-import { ClassesListComponent } from './organization/components/scheduleclass/classes-list/classes-list.component'
+import { ClassesListComponent } from './organization/components/scheduleclass/classes-list/classes-list.component';
+import { ClassComponent } from './organization/components/class/class.component';
+import { ClassListComponent } from './organization/components/control-panel/classes/class-list/class-list.component'
 
-
-
+//SERVICES
+import { ClassesService } from './organization/services/admin/classes/classes.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -52,7 +55,9 @@ import { ClassesListComponent } from './organization/components/scheduleclass/cl
     UnitEditComponent,
     ChekingaccountCreateComponent,
     AdminComponent,
-    ClassesListComponent
+    ClassesListComponent,
+    ClassComponent,
+    ClassListComponent,
 
 
   ],
@@ -62,27 +67,11 @@ import { ClassesListComponent } from './organization/components/scheduleclass/cl
     HelpersModule,
     DefaultRoutingModule,
     AnimationsModule,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    HttpClientModule
 
 
   ],
-  providers: [],
+  providers: [ClassesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

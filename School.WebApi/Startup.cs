@@ -55,7 +55,7 @@ namespace School.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(_cors => _cors.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
