@@ -1,7 +1,7 @@
 //Testes
 //import { BrowserModule } from '@angular/platform-browser';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { DateTimeFormatPipePipe } from '../app/organization/helpers/DateTimeFormatPipe.pipe';
 
 //native modules
 import { NgModule } from '@angular/core';
@@ -13,7 +13,7 @@ import { MaterialModule } from './organization/modules/material.module';
 import { AnimationsModule } from './organization/modules/animations.module';
 
 //Components
-import { NavComponent } from './organization/components/nav/nav.component';
+
 import { HelpersModule } from './organization/helpers/helpers.module';
 import { HeaderComponent } from './organization/components/navigation/header/header.component';
 import { SidenavListComponent } from './organization/components/navigation/sidenav-list/sidenav-list.component';
@@ -41,7 +41,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     HeaderComponent,
     SidenavListComponent,
     CreateTeacherComponent,
@@ -58,7 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
     ClassesListComponent,
     ClassComponent,
     ClassListComponent,
-
+    DateTimeFormatPipePipe
 
   ],
 

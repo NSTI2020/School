@@ -1,3 +1,23 @@
-.mat-list-item {
-  text-align: left;
+td,
+th {
+  width: 150px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  background-color: rgb(58, 117, 58);
+  border-width: 1px;
+  border-color: rgb(74, 128, 20);
+  box-shadow: 1px 1px 1px 1px;
+}
+
+#divB {
+  border-color: lawngreen;
+  box-shadow: 10px 10px 50px 10px;
+}
+
+.menuEdit {
+  width: 10px;
+}
+#thActions {
+  width: 50px;
 }

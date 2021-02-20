@@ -15,7 +15,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 
@@ -37,6 +38,8 @@ import { MatTableDataSource } from '@angular/material/table';
         MatDatepickerModule,
         MatNativeDateModule,
         MatDividerModule,
+        MatMenuModule
+
 
     ],
     exports: [
@@ -56,7 +59,7 @@ import { MatTableDataSource } from '@angular/material/table';
         MatDatepickerModule,
         MatNativeDateModule,
         MatDividerModule,
-
+        MatMenuModule
 
     ]
 })

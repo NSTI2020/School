@@ -3,6 +3,8 @@ import { ClassesService } from 'src/app/organization/services/admin/classes/clas
 import { Class } from '../../../../interfaces/Class';
 import { MatTableDataSource } from '@angular/material/table';
 
+
+
 @Component({
   selector: 'app-class-list',
   templateUrl: './class-list.component.html',
@@ -10,10 +12,16 @@ import { MatTableDataSource } from '@angular/material/table';
   providers: [ClassesService]
 })
 export class ClassListComponent implements OnInit {
+
+
   //#region Variables
+
+
   GetAllClassesReturn: Class[];
 
   //#endregion
+
+
 
   constructor(private ClassesService: ClassesService) { }
 

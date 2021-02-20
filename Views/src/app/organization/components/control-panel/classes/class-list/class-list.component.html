@@ -1,76 +1,87 @@
-<div>
-    <table>
-        <thead>
-            <tr>
-                <mat-list role="list">
+<table class="table">
+    <thead class="thead-light">
+        <div>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                Idioma
+            </th>
 
-                    <th>
-                        <mat-list-item role="listitem">Id</mat-list-item>
-                    </th>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                Unidade
 
-                    <th>
-                        <mat-list-item role="listitem">Idioma</mat-list-item>
-                    </th>
+            </th>
 
-                    <th>
-                        <mat-list-item role="listitem">Unidade</mat-list-item>
-                    </th>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                Nome
+            </th>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                Sala
+            </th>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                Inicio
+            </th>
 
-                    <th>
-                        <mat-list-item role="listitem">Nome</mat-list-item>
-                    </th>
-                    <th>
-                        <mat-list-item role="listitem">Sala</mat-list-item>
-                    </th>
-                    <th>
-                        <mat-list-item role="listitem">Inicio</mat-list-item>
-                    </th>
-
-                    <th>
-                        <mat-list-item role="listitem">Fim</mat-list-item>
-                    </th>
-
-                </mat-list>
-            </tr>
-            <br>
-            <mat-divider></mat-divider>
-        </thead>
-        <tbody>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                Fim
+            </th>
+            <th id="thActions" style="background-color: rgb(14, 79, 14); color:white;">
+                <i class="fas fa-bars"></i>
+            </th>
+        </div>
+    <tbody>
+        <div id="divB">
             <tr>
 
-                <mat-list role="list">
-                    <mat-list-item *ngFor="let class of GetAllClassesReturn">
-                        <td>
-                            <mat-list-item role="listitem">{{class.id}}</mat-list-item>
-                        </td>
+                <div *ngFor="let class of GetAllClassesReturn">
 
-                        <td>
-                            <mat-list-item role="listitem">{{class.discipline.language}}</mat-list-item>
-                        </td>
 
-                        <td>
-                            <mat-list-item role="listitem">{{class.unit.name}}</mat-list-item>
-                        </td>
+                    <td>
+                        {{class.discipline.language}}
 
-                        <td>
-                            <mat-list-item role="listitem">{{class.teacher.name}}</mat-list-item>
-                        </td>
-                        <td>
-                            <mat-list-item role="listitem">{{class.room.identifier}}</mat-list-item>
-                        </td>
-                        <td>
-                            <mat-list-item role="listitem">{{class.start}}</mat-list-item>
-                        </td>
+                    </td>
 
-                        <td>
-                            <mat-list-item role="listitem">{{class.end}}</mat-list-item>
-                        </td>
+                    <td>
+                        {{class.unit.name}}
 
-                    </mat-list-item>
+                    </td>
 
-                </mat-list>
+                    <td>
+                        {{class.teacher.name}}
+
+                    </td>
+                    <td>
+                        {{class.room.identifier}}
+
+                    </td>
+                    <td>
+                        {{class.start | DateTimeFormatPipe}}
+                    </td>
+
+                    <td>
+                        {{class.end | DateTimeFormatPipe}}
+                    </td>
+                    <td class="menuEdit">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>deletesweep</mat-icon>
+                                <span>Excluir</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>edit</mat-icon>
+                                <span>Modificar</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>info</mat-icon>
+                                <span>Detalhes</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+
+                </div>
 
             </tr>
-        </tbody>
-    </table>
-</div>
+        </div>
+    </tbody>
+</table>

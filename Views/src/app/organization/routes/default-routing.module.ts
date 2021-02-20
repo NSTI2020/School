@@ -22,6 +22,7 @@ const routes: Routes = [
     { path: '', component: ClassListComponent }
 
 ];
+const routes2: Routes = [];
 
 
 @NgModule({

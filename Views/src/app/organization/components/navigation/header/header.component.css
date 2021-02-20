@@ -7,3 +7,44 @@ a:hover,
 a:active {
   color: lightgray;
 }
+.mat-toolbar {
+  border-color: rgb(255, 255, 255);
+  border-width: 10px;
+  border-color: rgb(74, 128, 20);
+  background-color: rgb(14, 44, 14);
+  box-shadow: 1px 1px 1px 1px;
+}
+nav#menu ul {
+  list-style: circle;
+}
+ul li::before {
+  content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: greenyellow; /* Change the color */
+  font-weight: bold; /* If you want it to be bold */
+
+  width: 1em; /* Also needed for space (tweak if needed) */
+  margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
+#logo {
+  width: 68px;
+  height: 68px;
+  position: absolute;
+
+  border-color: rgb(255, 255, 255);
+  border-width: 10px;
+  box-shadow: 1px 1px 5px 2px;
+  border-radius: 100%;
+}
+h1 {
+  color: white;
+
+  position: unset;
+  padding-bottom: 40px;
+}
+h2 {
+  border-color: rgb(255, 255, 255);
+  border-width: 10px;
+  box-shadow: 1px 1px 5px 2px;
+  border-radius: 10%;
+  color: rgb(228, 70, 30);
+}
