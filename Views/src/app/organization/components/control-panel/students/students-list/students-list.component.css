@@ -1,0 +1,15 @@
+table {
+  border: 1px solid black;
+  border-right: black;
+}
+th,
+td {
+  width: 180px;
+  text-align: center;
+
+  border: 1px solid black;
+}
+
+.trSpace {
+  height: 50px;
+}

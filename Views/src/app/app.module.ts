@@ -17,25 +17,27 @@ import { AnimationsModule } from './organization/modules/animations.module';
 import { HelpersModule } from './organization/helpers/helpers.module';
 import { HeaderComponent } from './organization/components/navigation/header/header.component';
 import { SidenavListComponent } from './organization/components/navigation/sidenav-list/sidenav-list.component';
-import { CreateTeacherComponent } from './organization/components/teacher/create-teacher/create-teacher.component';
-import { ListTeacherComponent } from './organization/components/teacher/list-teacher/list-teacher.component';
-import { TabsTeacherComponent } from './organization/components/teacher/tabs-teacher/tabs-teacher.component';
-import { TabsStudentComponent } from './organization/components/student/tabs-student/tabs-student.component';
-import { CreateStudentComponent } from './organization/components/student/create-student/create-student.component';
+import { CreateTeacherComponent } from './organization/components/control-panel/teacher/create-teacher/create-teacher.component';
+import { ListTeacherComponent } from './organization/components/control-panel/teacher/list-teacher/list-teacher.component';
+import { TabsTeacherComponent } from './organization/components/control-panel/teacher/tabs-teacher/tabs-teacher.component';
 import { DefaultRoutingModule } from './organization/routes/default-routing.module';
-import { EditTeacherComponent } from './organization/components/teacher/edit-teacher/edit-teacher.component';
-import { ScheduleclassComponent } from './organization/components/scheduleclass/scheduleclass.component';
-import { UnitCreateComponent } from './organization/components/unit/unit-create/unit-create.component';
-import { UnitEditComponent } from './organization/components/unit/unit-edit/unit-edit.component';
-import { ChekingaccountCreateComponent } from './organization/components/checking-account/chekingaccount-create/chekingaccount-create.component';
+import { EditTeacherComponent } from './organization/components/control-panel/teacher/edit-teacher/edit-teacher.component';
+import { UnitCreateComponent } from './organization/components/control-panel/unit/unit-create/unit-create.component';
+import { UnitEditComponent } from './organization/components/control-panel/unit/unit-edit/unit-edit.component';
+import { ChekingaccountCreateComponent } from './organization/components/control-panel/checking-account/chekingaccount-create/chekingaccount-create.component';
 import { AdminComponent } from './organization/components/control-panel/admin/admin.component';
-import { ClassesListComponent } from './organization/components/scheduleclass/classes-list/classes-list.component';
-import { ClassComponent } from './organization/components/class/class.component';
 import { ClassListComponent } from './organization/components/control-panel/classes/class-list/class-list.component'
+import { StudentsListComponent } from './organization/components/control-panel/students/students-list/students-list.component';
 
 //SERVICES
 import { ClassesService } from './organization/services/admin/classes/classes.service';
+import { StudentsServices } from './organization/services/admin/students/students.services';
+
+
 import { HttpClientModule } from '@angular/common/http';
+import { ControlPanelComponent } from './organization/components/control-panel/control-panel/control-panel.component';
+
+
 
 
 @NgModule({
@@ -46,18 +48,15 @@ import { HttpClientModule } from '@angular/common/http';
     CreateTeacherComponent,
     ListTeacherComponent,
     TabsTeacherComponent,
-    TabsStudentComponent,
-    CreateStudentComponent,
     EditTeacherComponent,
-    ScheduleclassComponent,
     UnitCreateComponent,
     UnitEditComponent,
     ChekingaccountCreateComponent,
     AdminComponent,
-    ClassesListComponent,
-    ClassComponent,
     ClassListComponent,
-    DateTimeFormatPipePipe
+    DateTimeFormatPipePipe,
+    StudentsListComponent,
+    ControlPanelComponent
 
   ],
 
@@ -70,7 +69,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 
   ],
-  providers: [ClassesService],
+  providers: [
+    ClassesService,
+    StudentsServices
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

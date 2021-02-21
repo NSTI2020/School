@@ -9,8 +9,8 @@ using School.Repository.Data;
 namespace School.WebApi.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
-    [Migration("20210216224638_dto")]
-    partial class dto
+    [Migration("20210221183619_Lists changed for discipline10")]
+    partial class Listschangedfordiscipline10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,7 +88,7 @@ namespace School.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("DisciplineId")
+                    b.Property<int?>("DisciplineId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("End")
@@ -96,9 +96,6 @@ namespace School.WebApi.Migrations
 
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
 
                     b.Property<int>("TeacherId")
                         .HasColumnType("int");
@@ -111,8 +108,7 @@ namespace School.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DisciplineId")
-                        .IsUnique();
+                    b.HasIndex("DisciplineId");
 
                     b.HasIndex("TeacherId")
                         .IsUnique();
@@ -164,17 +160,13 @@ namespace School.WebApi.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int?>("StudentId")
+                    b.Property<int>("StudentsId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TeacherId")
+                    b.Property<int>("TeachersId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.HasIndex("TeacherId");
 
                     b.ToTable("Disciplines");
                 });
@@ -263,7 +255,7 @@ namespace School.WebApi.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DisciplineId")
+                    b.Property<int?>("DisciplineId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -282,6 +274,8 @@ namespace School.WebApi.Migrations
                     b.HasIndex("ContactId")
                         .IsUnique();
 
+                    b.HasIndex("DisciplineId");
+
                     b.ToTable("Students");
                 });
 
@@ -297,7 +291,7 @@ namespace School.WebApi.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DisciplineId")
+                    b.Property<int?>("DisciplineId")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
@@ -314,6 +308,8 @@ namespace School.WebApi.Migrations
                     b.HasIndex("ContactId")
                         .IsUnique();
 
+                    b.HasIndex("DisciplineId");
+
                     b.ToTable("Teachers");
                 });
 
@@ -326,14 +322,8 @@ namespace School.WebApi.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CheckingAccountsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("RoomsId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -352,10 +342,8 @@ namespace School.WebApi.Migrations
             modelBuilder.Entity("School.Domain.Entities.Class", b =>
                 {
                     b.HasOne("School.Domain.Entities.Discipline", "Discipline")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Class", "DisciplineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("DisciplineId");
 
                     b.HasOne("School.Domain.Entities.Teacher", "Teacher")
                         .WithOne()
@@ -374,17 +362,6 @@ namespace School.WebApi.Migrations
                         .HasForeignKey("School.Domain.Entities.Class", "roomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("School.Domain.Entities.Discipline", b =>
-                {
-                    b.HasOne("School.Domain.Entities.Student", null)
-                        .WithMany("Discipline")
-                        .HasForeignKey("StudentId");
-
-                    b.HasOne("School.Domain.Entities.Teacher", null)
-                        .WithMany("Discipline")
-                        .HasForeignKey("TeacherId");
                 });
 
             modelBuilder.Entity("School.Domain.Entities.InstantMessage", b =>
@@ -425,6 +402,10 @@ namespace School.WebApi.Migrations
                         .HasForeignKey("School.Domain.Entities.Student", "ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("School.Domain.Entities.Discipline", null)
+                        .WithMany("Students")
+                        .HasForeignKey("DisciplineId");
                 });
 
             modelBuilder.Entity("School.Domain.Entities.Teacher", b =>
@@ -440,6 +421,10 @@ namespace School.WebApi.Migrations
                         .HasForeignKey("School.Domain.Entities.Teacher", "ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("School.Domain.Entities.Discipline", null)
+                        .WithMany("Teachers")
+                        .HasForeignKey("DisciplineId");
                 });
 
             modelBuilder.Entity("School.Domain.Entities.Unit", b =>

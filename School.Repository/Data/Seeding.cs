@@ -111,12 +111,16 @@ namespace School.Repository.Data
                            = new string[]
                            { "Alemão", "Árabe", "Chinês", "Espanhol",
             "Francês", "Inglês", "Italiano", "Japonês", "Portuês" };
-
+                int n = 0;
                 foreach (string Discipline in Disciplines)
                 {
+                    if (n < 1)
+                        n++;
                     _discipline = new Discipline();
                     _discipline.Language = Discipline;
+
                     _listDisciplines.Add(_discipline);
+
                     //  await _context.AddAsync(_discipline);
                 }
                 //return await _context.SaveChangesAsync() > 0;
@@ -835,7 +839,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts0[0];
             _student.LastName = sts0[1];
-            _student.Discipline = listDisciplinesStudent0;
+            //_student.Discipline = listDisciplinesStudent0;
             _student.Contact = stus[0];
             _student.Address = addr[0];
             _listStudent.Add(_student);
@@ -847,7 +851,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts1[0];
             _student.LastName = sts1[1];
-            _student.Discipline = listDisciplinesStudent1;
+            //_student.Discipline = listDisciplinesStudent1;
             _student.Contact = stus[1];
             _student.Address = addr[1];
             _listStudent.Add(_student);
@@ -859,7 +863,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts2[0];
             _student.LastName = sts2[1];
-            _student.Discipline = listDisciplinesStudent2;
+            //_student.Discipline = listDisciplinesStudent2;
             _student.Contact = stus[2];
             _student.Address = addr[2];
             _listStudent.Add(_student);
@@ -871,7 +875,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts3[0];
             _student.LastName = sts3[1];
-            _student.Discipline = listDisciplinesStudent3;
+            //_student.Discipline = listDisciplinesStudent3;
             _student.Contact = stus[3];
             _student.Address = addr[3];
             _listStudent.Add(_student);
@@ -883,7 +887,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts4[0];
             _student.LastName = sts4[1];
-            _student.Discipline = listDisciplinesStudent4;
+            //_student.Discipline = listDisciplinesStudent4;
             _student.Contact = stus[4];
             _student.Address = addr[4];
             _listStudent.Add(_student);
@@ -895,7 +899,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts5[0];
             _student.LastName = sts5[1];
-            _student.Discipline = listDisciplinesStudent5;
+            //_student.Discipline = listDisciplinesStudent5;
             _student.Contact = stus[5];
             _student.Address = addr[5];
             _listStudent.Add(_student);
@@ -908,7 +912,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts6[0];
             _student.LastName = sts6[1];
-            _student.Discipline = listDisciplinesStudent6;
+            //_student.Discipline = listDisciplinesStudent6;
             _student.Contact = stus[6];
             _student.Address = addr[6];
             _listStudent.Add(_student);
@@ -920,7 +924,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts2[0];
             _student.LastName = sts2[1];
-            _student.Discipline = listDisciplinesStudent7;
+            //_student.Discipline = listDisciplinesStudent7;
             _student.Contact = stus[7];
             _student.Address = addr[7];
             _listStudent.Add(_student);
@@ -932,7 +936,7 @@ namespace School.Repository.Data
             _student = new Student();
             _student.Name = sts8[0];
             _student.LastName = sts8[1];
-            _student.Discipline = listDisciplinesStudent8;
+            //_student.Discipline = listDisciplinesStudent8;
             _student.Contact = stus[8];
             _student.Address = addr[8];
             _listStudent.Add(_student);
@@ -1012,7 +1016,7 @@ namespace School.Repository.Data
                 _teachers.Name = tch0[0];
                 _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[3];
-                _teachers.Discipline = listDisciplinesTeacher0;
+                //_teachers.Discipline = listDisciplinesTeacher0;
                 _teachers.Address = addr[0];
                 _ListTeachers.Add(_teachers);
                 //_context.Add(_teachers);
@@ -1024,7 +1028,7 @@ namespace School.Repository.Data
                 _teachers.Name = tch0[0];
                 _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[4];
-                _teachers.Discipline = listDisciplinesTeacher1;
+                //_teachers.Discipline = listDisciplinesTeacher1;
                 _teachers.Address = addr[1];
                 _ListTeachers.Add(_teachers);
                 //_context.Add(_teachers);
@@ -1036,7 +1040,7 @@ namespace School.Repository.Data
                 _teachers.Name = tch0[0];
                 _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
-                _teachers.Discipline = listDisciplinesTeacher2;
+                //_teachers.Discipline = listDisciplinesTeacher2;
                 _teachers.Address = addr[2];
                 _ListTeachers.Add(_teachers);
                 //  _context.Add(_teachers);
@@ -1048,7 +1052,7 @@ namespace School.Repository.Data
                 _teachers.Name = tch0[0];
                 _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
-                _teachers.Discipline = listDisciplinesTeacher3;
+                //_teachers.Discipline = listDisciplinesTeacher3;
                 _teachers.Address = addr[3];
                 _ListTeachers.Add(_teachers);
                 //  _context.Add(_teachers);
@@ -1060,7 +1064,7 @@ namespace School.Repository.Data
                 _teachers.Name = tch0[0];
                 _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
-                _teachers.Discipline = listDisciplinesTeacher4;
+                //_teachers.Discipline = listDisciplinesTeacher4;
                 _teachers.Address = addr[4];
                 _ListTeachers.Add(_teachers);
                 //  _context.Add(_teachers);
@@ -1071,7 +1075,7 @@ namespace School.Repository.Data
                 _teachers.Name = tch0[0];
                 _teachers.LastName = tch0[1];
                 _teachers.Contact = contacts[5];
-                _teachers.Discipline = listDisciplinesTeacher5;
+                //_teachers.Discipline = listDisciplinesTeacher5;
                 _teachers.Address = addr[5];
                 //  _context.Add(_teachers);
                 // return await _context.SaveChangesAsync() > 0;

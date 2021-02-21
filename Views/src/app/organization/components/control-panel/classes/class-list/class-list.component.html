@@ -1,3 +1,11 @@
+<mat-form-field class="seach">
+    <mat-label>Pesquisar por aula.</mat-label>
+    <textarea [(ngModel)]="filteringString" matInput placeholder="Procurar aula..."></textarea>
+</mat-form-field>
+<div id="serarchDiv">
+    {{filteringString}}
+    <br>
+</div>
 <table class="table">
     <thead class="thead-light">
         <div>
@@ -31,7 +39,7 @@
         <div id="divB">
             <tr>
 
-                <div *ngFor="let class of GetAllClassesReturn">
+                <div *ngFor="let class of filteredArray">
 
 
                     <td>
@@ -60,7 +68,7 @@
                         {{class.end | DateTimeFormatPipe}}
                     </td>
                     <td class="menuEdit">
-                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">

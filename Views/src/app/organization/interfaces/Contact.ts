@@ -1,3 +1,6 @@
+import { InstantMessage } from './InstantMessage';
+import { SocialNetwork } from './SocialNetwork';
+
 export class Contact {
     Id: number;
     cellphone: string;
@@ -5,7 +8,7 @@ export class Contact {
     comercialphone: string;
     email: string;
     instantMessageId: number;
-    instantMessage: string;
+    instantMessage: InstantMessage;
     socialNetworkId: number;
-    socialNetwork: string;
+    socialNetwork: SocialNetwork;
 }

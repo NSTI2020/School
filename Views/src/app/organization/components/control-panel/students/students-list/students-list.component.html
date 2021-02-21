@@ -1,0 +1,67 @@
+<div>
+    <table>
+        <thead colspan="2">
+
+            <th>
+                <h3>
+                    Nome
+
+                </h3>
+            </th>
+
+            <th>
+                <h3>
+                    Sobrenome
+                </h3>
+            </th>
+
+            <th>
+                <h3>
+                    Residencial
+                </h3>
+            </th>
+
+            <th>
+                <h3>Idioma</h3>
+            </th>
+
+            <th><i class="fas fa-bars"></i></th>
+        </thead>
+        <tr class="trSpace"></tr>
+        <tbody *ngFor="let items of getAllStudentsreturn">
+
+            <tr>
+                <td>{{items.name}}</td>
+                <td>{{items.lastName}}</td>
+                <td>{{items.contact.homePhone}}</td>
+                <td>
+                    {{langs}}
+                </td>
+                <td>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>deletesweep</mat-icon>
+                            <span>Excluir</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Modificar</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>info</mat-icon>
+                            <span>Detalhes</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </tr>
+
+        </tbody>
+
+
+
+
+    </table>
+</div>

@@ -17,7 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
 
-
+//No Mat Material
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { MatMenuModule } from '@angular/material/menu';
         MatDatepickerModule,
         MatNativeDateModule,
         MatDividerModule,
-        MatMenuModule
+        MatMenuModule,
+        FormsModule
 
 
     ],
@@ -59,7 +61,8 @@ import { MatMenuModule } from '@angular/material/menu';
         MatDatepickerModule,
         MatNativeDateModule,
         MatDividerModule,
-        MatMenuModule
+        MatMenuModule,
+        FormsModule
 
     ]
 })

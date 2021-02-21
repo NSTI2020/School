@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassesService } from 'src/app/organization/services/admin/classes/classes.service';
 import { Class } from '../../../../interfaces/Class';
-import { MatTableDataSource } from '@angular/material/table';
-
 
 
 @Component({
@@ -15,23 +13,18 @@ export class ClassListComponent implements OnInit {
 
 
   //#region Variables
-
-
   GetAllClassesReturn: Class[];
 
-  //#endregion
-
-
-
-  constructor(private ClassesService: ClassesService) { }
-
-
+  //Filter field search.
+  filteredArray: Class[];
+  _stringOfFilter: string;
 
   getAllClasses(): void {
 
     this.ClassesService.ApiAll().subscribe(
       (_returnSub: Class[]) => {
         this.GetAllClassesReturn = _returnSub;
+        this.filteredArray = _returnSub;
         console.log(_returnSub);
       },
       error => {
@@ -40,6 +33,28 @@ export class ClassListComponent implements OnInit {
     )
 
   }
+
+  get filteringString() {
+    return this._stringOfFilter;
+  }
+
+  set filteringString(value: string) {
+    this._stringOfFilter = value;
+    this.filteredArray
+      = this._stringOfFilter
+        ? this.actionFilter(this.filteringString)
+        : this.GetAllClassesReturn;
+  }
+
+  actionFilter(filteredBy: string): Class[] {
+    filteredBy = filteredBy.toLocaleLowerCase();
+    return this.GetAllClassesReturn.filter(N => N.discipline.language.toLocaleLowerCase().indexOf(filteredBy) !== -1)
+  }
+
+  //#endregion
+
+
+  constructor(private ClassesService: ClassesService) { }
 
 
   ngOnInit(): void {
