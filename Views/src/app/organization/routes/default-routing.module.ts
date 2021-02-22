@@ -19,6 +19,7 @@ const routes: Routes = [
     { path: 'students', component: StudentsListComponent },
     { path: '', component: ControlPanelComponent }
 
+
 ];
 const routes2: Routes = [];
 

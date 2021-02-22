@@ -1,31 +1,39 @@
+<mat-form-field class="seach">
+    <mat-label>Pesquisar por aula.</mat-label>
+    <textarea matInput placeholder="Procurar aula..."></textarea>
+</mat-form-field>
+<div id="searchDiv">
+
+    <br>
+</div>
 <div>
     <table>
         <thead colspan="2">
 
-            <th>
-                <h3>
-                    Nome
+            <th style="background-color: rgb(14, 79, 14); color:white;">
 
-                </h3>
+                Nome
+
+
             </th>
 
-            <th>
-                <h3>
-                    Sobrenome
-                </h3>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+
+                Sobrenome
+
             </th>
 
-            <th>
-                <h3>
-                    Residencial
-                </h3>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+
+                Residencial
+
             </th>
 
-            <th>
-                <h3>Idioma</h3>
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+
             </th>
 
-            <th><i class="fas fa-bars"></i></th>
+            <th style="background-color: rgb(14, 79, 14); color:white;"><i class="fas fa-bars"></i></th>
         </thead>
         <tr class="trSpace"></tr>
         <tbody *ngFor="let items of getAllStudentsreturn">

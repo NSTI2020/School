@@ -1,15 +1,52 @@
 table {
-  border: 1px solid black;
-  border-right: black;
+  border-width: 1px;
+  border-color: rgb(74, 128, 20);
+  box-shadow: 10px 10px 20px 0px;
 }
-th,
-td {
-  width: 180px;
+td,
+th {
+  width: 150px;
   text-align: center;
-
-  border: 1px solid black;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  background-color: rgb(58, 117, 58);
+  border-width: 1px;
+  border-color: rgb(74, 128, 20);
+  box-shadow: 1px 1px 1px 1px;
 }
 
+.menuEdit {
+  width: 10px;
+}
+#thActions {
+  width: 50px;
+}
+
+.seach {
+  width: 50%;
+}
+textarea {
+  color: chocolate;
+}
+
+#searchDiv {
+  color: chocolate;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: green !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: green !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: green !important;
+}
 .trSpace {
-  height: 50px;
+  height: 10px;
 }

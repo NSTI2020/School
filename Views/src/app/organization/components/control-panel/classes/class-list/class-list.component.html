@@ -2,7 +2,7 @@
     <mat-label>Pesquisar por aula.</mat-label>
     <textarea [(ngModel)]="filteringString" matInput placeholder="Procurar aula..."></textarea>
 </mat-form-field>
-<div id="serarchDiv">
+<div id="searchDiv">
     {{filteringString}}
     <br>
 </div>
@@ -35,6 +35,8 @@
                 <i class="fas fa-bars"></i>
             </th>
         </div>
+    </thead>
+    <tr class="trSpace"></tr>
     <tbody>
         <div id="divB">
             <tr>

@@ -19,7 +19,6 @@ import { HeaderComponent } from './organization/components/navigation/header/hea
 import { SidenavListComponent } from './organization/components/navigation/sidenav-list/sidenav-list.component';
 import { CreateTeacherComponent } from './organization/components/control-panel/teacher/create-teacher/create-teacher.component';
 import { ListTeacherComponent } from './organization/components/control-panel/teacher/list-teacher/list-teacher.component';
-import { TabsTeacherComponent } from './organization/components/control-panel/teacher/tabs-teacher/tabs-teacher.component';
 import { DefaultRoutingModule } from './organization/routes/default-routing.module';
 import { EditTeacherComponent } from './organization/components/control-panel/teacher/edit-teacher/edit-teacher.component';
 import { UnitCreateComponent } from './organization/components/control-panel/unit/unit-create/unit-create.component';
@@ -32,7 +31,7 @@ import { StudentsListComponent } from './organization/components/control-panel/s
 //SERVICES
 import { ClassesService } from './organization/services/admin/classes/classes.service';
 import { StudentsServices } from './organization/services/admin/students/students.services';
-
+import { TeacherServices } from './organization/services/admin/teacher/teacherServices';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ControlPanelComponent } from './organization/components/control-panel/control-panel/control-panel.component';
@@ -47,7 +46,6 @@ import { ControlPanelComponent } from './organization/components/control-panel/c
     SidenavListComponent,
     CreateTeacherComponent,
     ListTeacherComponent,
-    TabsTeacherComponent,
     EditTeacherComponent,
     UnitCreateComponent,
     UnitEditComponent,
@@ -71,7 +69,8 @@ import { ControlPanelComponent } from './organization/components/control-panel/c
   ],
   providers: [
     ClassesService,
-    StudentsServices
+    StudentsServices,
+    TeacherServices
 
   ],
   bootstrap: [AppComponent]

@@ -1,36 +1,73 @@
-<div>
-    <mat-form-field class="example-full-width">
-        <mat-label>Pesquisar...</mat-label>
-        <input matInput placeholder="Nome Professor...">
-    </mat-form-field>
+<mat-form-field class="seach">
+    <mat-label>Pesquisar por professor.</mat-label>
+    <textarea [(ngModel)]="FilteringString" matInput placeholder="Procurar professor..."></textarea>
+</mat-form-field>
+<div id="searchDiv">
+    {{FilteringString}}
+    <br>
 </div>
 <div>
-    <table id="teachertable">
+    <table class="table">
         <thead>
-            <tr>
-                <th>
-                    <h4> Nome </h4>
-                </th>
-                <th>
-                    <h4> Disciplina </h4>
-                </th>
-                <th>
-                    <h4> Unidade </h4>
-                </th>
-            </tr>
+
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+
+                Nome
+
+
+            </th>
+
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+
+                Email
+
+            </th>
+
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                Idioma
+            </th>
+
+            <th style="background-color: rgb(14, 79, 14); color:white;">
+                WhatsApp
+            </th>
+
+            <th style="background-color: rgb(14, 79, 14); color:white;"><i class="fas fa-bars"></i></th>
         </thead>
-        <tbody>
+        <tr class="trSpace"></tr>
+        <tbody *ngFor="let items of FilteredArray">
+
             <tr>
+                <td>{{items.name}}</td>
+                <td>{{items.contact.email}}</td>
                 <td>
-                    <mat-list-item> Marcus Vinícius Dias </mat-list-item>
+                    {{langs}}
                 </td>
+                <td>{{items.contact.instantMessage[1].name}}</td>
                 <td>
-                    <mat-list-item> Inglês </mat-list-item>
-                </td>
-                <td>
-                    <mat-list-item> Lourdes </mat-list-item>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>deletesweep</mat-icon>
+                            <span>Excluir</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span (click)="openDialog()">Modificar</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>info</mat-icon>
+                            <span>Detalhes</span>
+                        </button>
+                    </mat-menu>
                 </td>
             </tr>
+
         </tbody>
+
+
+
+
     </table>
 </div>
