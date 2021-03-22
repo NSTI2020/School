@@ -33,6 +33,18 @@ textarea {
   color: chocolate;
 }
 
+#newClass {
+  position: absolute;
+  left: 780px;
+  top: 40px;
+
+  /*box-shadow: 10px 1px 10px 1px;*/
+}
+
+.tooltip.newClass .tooltip-arrow {
+  border-right-color: white;
+}
+
 ::ng-deep .mat-focused .mat-form-field-label {
   /*change color of label*/
   color: green !important;

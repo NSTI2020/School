@@ -1,5 +1,5 @@
 import { Teacher } from './Teacher';
-import { Discipline } from './Discipline';
+import { DisciplineTeacher } from './DisciplineTeacher';
 import { Student } from './Student';
 import { Unit } from './Unit';
 import { Room } from './Room';
@@ -12,7 +12,7 @@ export class Class {
     start: Date;
     end: Date;
     disciplineid: number;
-    discipline: Discipline;
+    discipline: DisciplineTeacher;
     studentid: number;
     students: Student[];
     unitid: number;

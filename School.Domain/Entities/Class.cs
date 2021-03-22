@@ -10,7 +10,7 @@ namespace School.Domain.Entities
         public Teacher Teacher { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public Discipline Discipline { get; set; }
+        public DisciplineClass Discipline { get; set; }
         public List<Student> Students { get; set; }
         public int UnitId { get; set; }
         public Unit Unit { get; set; }

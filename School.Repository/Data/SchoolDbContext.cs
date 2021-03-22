@@ -5,12 +5,11 @@ namespace School.Repository.Data
 {
     public class SchoolDbContext : DbContext
     {
-
         public DbSet<Address> Addresses { get; set; }
         public DbSet<CheckingAccount> CheckingAccounts { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Discipline> Disciplines { get; set; }
+        public DbSet<DisciplineTeacher> Disciplines { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<SocialNetwork> socialNetworks { get; set; }
         public DbSet<Student> Students { get; set; }
@@ -21,7 +20,7 @@ namespace School.Repository.Data
         {
 
         }
-
+/*
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Address>().HasKey(_id => _id.Id);
@@ -50,7 +49,7 @@ namespace School.Repository.Data
 
 
 
-        }
+        } */
     }
 
 }

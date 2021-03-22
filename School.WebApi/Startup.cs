@@ -40,7 +40,7 @@ namespace School.WebApi
 
 
             services.AddScoped<SeedingService>();
-            services.AddScoped<Seeding>();
+       //     services.AddScoped<Seeding>();
 
         }
 

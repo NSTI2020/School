@@ -5,7 +5,7 @@ using School.Repository.Data;
 
 namespace School.WebApi.Controllers
 {
-    [ApiController]
+  /*  [ApiController]
     [Route("api/{controller}")]
     public class SeedingController : ControllerBase
     {
@@ -32,5 +32,5 @@ namespace School.WebApi.Controllers
                 return Ok(msgs[1]);
             }
         }
-    }
+    }*/
 }

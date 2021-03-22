@@ -17,8 +17,9 @@ import { ControlPanelComponent } from '../components/control-panel/control-panel
 
 const routes: Routes = [
     { path: 'students', component: StudentsListComponent },
-    { path: '', component: ControlPanelComponent }
-
+    { path: '', component: ControlPanelComponent },
+    { path: 'teacher/:id/edit', component: EditTeacherComponent },
+    { path: 'edit', component: EditTeacherComponent },
 
 ];
 const routes2: Routes = [];

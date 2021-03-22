@@ -1,5 +1,5 @@
 
-import { Discipline } from './Discipline';
+//import { Discipline } from './DisciplineTeacher';
 import { Contact } from './Contact';
 import { Address } from './Address';
 
@@ -12,7 +12,7 @@ export class Student {
     contactid: number;
     contact: Contact;
     disciplineid: number;
-    discipline: Discipline[];
+  //  discipline: Discipline[];
     addressid: number;
     address: Address;
 }

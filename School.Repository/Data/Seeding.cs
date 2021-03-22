@@ -1,3 +1,7 @@
+
+/*
+
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -1013,8 +1017,8 @@ namespace School.Repository.Data
                 listDisciplinesTeacher0.Add(dis[1]);
 
                 _teachers = new Teacher();
-                _teachers.Name = tch0[0];
-                _teachers.LastName = tch0[1];
+                _teachers.FullName = tch0[0];
+
                 _teachers.Contact = contacts[3];
                 //_teachers.Discipline = listDisciplinesTeacher0;
                 _teachers.Address = addr[0];
@@ -1025,8 +1029,8 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher1 = new List<Discipline>();
                 listDisciplinesTeacher1.Add(dis[3]);
                 _teachers = new Teacher();
-                _teachers.Name = tch0[0];
-                _teachers.LastName = tch0[1];
+                _teachers.FullName = tch0[0];
+
                 _teachers.Contact = contacts[4];
                 //_teachers.Discipline = listDisciplinesTeacher1;
                 _teachers.Address = addr[1];
@@ -1037,8 +1041,8 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher2 = new List<Discipline>();
                 listDisciplinesTeacher2.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Name = tch0[0];
-                _teachers.LastName = tch0[1];
+                _teachers.FullName = tch0[0];
+
                 _teachers.Contact = contacts[5];
                 //_teachers.Discipline = listDisciplinesTeacher2;
                 _teachers.Address = addr[2];
@@ -1049,8 +1053,8 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher3 = new List<Discipline>();
                 listDisciplinesTeacher3.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Name = tch0[0];
-                _teachers.LastName = tch0[1];
+                _teachers.FullName = tch0[0];
+
                 _teachers.Contact = contacts[5];
                 //_teachers.Discipline = listDisciplinesTeacher3;
                 _teachers.Address = addr[3];
@@ -1061,8 +1065,8 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher4 = new List<Discipline>();
                 listDisciplinesTeacher4.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Name = tch0[0];
-                _teachers.LastName = tch0[1];
+                _teachers.FullName = tch0[0];
+
                 _teachers.Contact = contacts[5];
                 //_teachers.Discipline = listDisciplinesTeacher4;
                 _teachers.Address = addr[4];
@@ -1072,8 +1076,8 @@ namespace School.Repository.Data
                 List<Discipline> listDisciplinesTeacher5 = new List<Discipline>();
                 listDisciplinesTeacher5.Add(dis[5]);
                 _teachers = new Teacher();
-                _teachers.Name = tch0[0];
-                _teachers.LastName = tch0[1];
+                _teachers.FullName = tch0[0];
+
                 _teachers.Contact = contacts[5];
                 //_teachers.Discipline = listDisciplinesTeacher5;
                 _teachers.Address = addr[5];
@@ -1144,7 +1148,7 @@ namespace School.Repository.Data
              _classes.Room = Rooms(2).ToArray()[3];
              _context.Add(_classes);
 
- */
+ 
 
             return await _context.SaveChangesAsync() > 0;
         }
@@ -1152,3 +1156,8 @@ namespace School.Repository.Data
 
     }
 }
+
+
+
+
+*/

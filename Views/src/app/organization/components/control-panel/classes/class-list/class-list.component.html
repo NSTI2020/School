@@ -1,3 +1,9 @@
+<div>
+    <button id="newClass" mat-icon-button color="primary" tooltip="Marca nova uma nova aula.">
+        <i class="far fa-calendar-plus fa-5x"></i>
+    </button>
+
+</div>
 <mat-form-field class="seach">
     <mat-label>Pesquisar por aula.</mat-label>
     <textarea [(ngModel)]="filteringString" matInput placeholder="Procurar aula..."></textarea>
@@ -6,6 +12,8 @@
     {{filteringString}}
     <br>
 </div>
+<br>
+<br>
 <table class="table">
     <thead class="thead-light">
         <div>

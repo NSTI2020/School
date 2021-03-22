@@ -2,7 +2,7 @@
 //import { BrowserModule } from '@angular/platform-browser';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateTimeFormatPipePipe } from '../app/organization/helpers/DateTimeFormatPipe.pipe';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 //native modules
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -13,7 +13,6 @@ import { MaterialModule } from './organization/modules/material.module';
 import { AnimationsModule } from './organization/modules/animations.module';
 
 //Components
-
 import { HelpersModule } from './organization/helpers/helpers.module';
 import { HeaderComponent } from './organization/components/navigation/header/header.component';
 import { SidenavListComponent } from './organization/components/navigation/sidenav-list/sidenav-list.component';
@@ -27,14 +26,43 @@ import { ChekingaccountCreateComponent } from './organization/components/control
 import { AdminComponent } from './organization/components/control-panel/admin/admin.component';
 import { ClassListComponent } from './organization/components/control-panel/classes/class-list/class-list.component'
 import { StudentsListComponent } from './organization/components/control-panel/students/students-list/students-list.component';
+import { ControlPanelComponent } from './organization/components/control-panel/control-panel/control-panel.component';
+import { StudentCreateComponent } from './organization/components/control-panel/students/student-create/student-create.component';
+
 
 //SERVICES
 import { ClassesService } from './organization/services/admin/classes/classes.service';
 import { StudentsServices } from './organization/services/admin/students/students.services';
 import { TeacherServices } from './organization/services/admin/teacher/teacherServices';
-
 import { HttpClientModule } from '@angular/common/http';
-import { ControlPanelComponent } from './organization/components/control-panel/control-panel/control-panel.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+//material
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatMenuModule } from '@angular/material/menu';
+
+
+//animations
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { DisciplineServices } from './organization/services/admin/disciplines/disciplines.services';
 
 
 
@@ -54,7 +82,9 @@ import { ControlPanelComponent } from './organization/components/control-panel/c
     ClassListComponent,
     DateTimeFormatPipePipe,
     StudentsListComponent,
-    ControlPanelComponent
+    ControlPanelComponent,
+    StudentCreateComponent,
+    
 
   ],
 
@@ -63,14 +93,39 @@ import { ControlPanelComponent } from './organization/components/control-panel/c
     HelpersModule,
     DefaultRoutingModule,
     AnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatTabsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDividerModule,
+    MatMenuModule,
+    BrowserModule,
+BrowserAnimationsModule,
+
+    TabsModule.forRoot()
+    
 
 
   ],
   providers: [
     ClassesService,
     StudentsServices,
-    TeacherServices
+    TeacherServices,
+    DisciplineServices
 
   ],
   bootstrap: [AppComponent]

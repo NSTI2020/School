@@ -1,15 +1,19 @@
-import { Discipline } from './Discipline';
+import { DisciplineTeacher } from './DisciplineTeacher';
 import { Address } from './Address';
 import { Contact } from './Contact';
 
 export class Teacher {
+    constructor() {
+
+    }
+
     id: number;
-    name: string;
-    lastname: string;
+    fullname: string;
+    birthday: Date;
+    maritalstatus: string;
     contactid: number;
     contact: Contact;
-    disciplineid: number;
-    discipline: Discipline[];
+    disciplines: DisciplineTeacher[];
     addressid: number;
     address: Address;
 }

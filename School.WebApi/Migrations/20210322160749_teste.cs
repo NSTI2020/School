@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace School.WebApi.Migrations
 {
-    public partial class listTeatcherandStudentadd : Migration
+    public partial class teste : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,21 +42,6 @@ namespace School.WebApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Contacts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Disciplines",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Language = table.Column<string>(nullable: true),
-                    StudentsId = table.Column<int>(nullable: false),
-                    TeachersId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Disciplines", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,11 +159,11 @@ namespace School.WebApi.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true),
+                    MaritalStatus = table.Column<string>(nullable: true),
+                    Birthday = table.Column<DateTime>(nullable: false),
                     ContactId = table.Column<int>(nullable: false),
                     AddressId = table.Column<int>(nullable: false),
-                    DisciplineId = table.Column<int>(nullable: true),
                     UnitId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -197,15 +182,85 @@ namespace School.WebApi.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Teachers_Disciplines_DisciplineId",
-                        column: x => x.DisciplineId,
-                        principalTable: "Disciplines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Teachers_Units_UnitId",
                         column: x => x.UnitId,
                         principalTable: "Units",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Disciplines",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Language = table.Column<string>(nullable: true),
+                    TeacherId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Disciplines", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Disciplines_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    ContactId = table.Column<int>(nullable: false),
+                    AddressId = table.Column<int>(nullable: false),
+                    ClassId = table.Column<int>(nullable: true),
+                    UnitId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Students_Contacts_ContactId",
+                        column: x => x.ContactId,
+                        principalTable: "Contacts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Students_Units_UnitId",
+                        column: x => x.UnitId,
+                        principalTable: "Units",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DisciplineClass",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    _Language = table.Column<string>(nullable: true),
+                    StudentId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DisciplineClass", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DisciplineClass_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -227,9 +282,9 @@ namespace School.WebApi.Migrations
                 {
                     table.PrimaryKey("PK_Classes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Classes_Disciplines_DisciplineId",
+                        name: "FK_Classes_DisciplineClass_DisciplineId",
                         column: x => x.DisciplineId,
-                        principalTable: "Disciplines",
+                        principalTable: "DisciplineClass",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -252,55 +307,6 @@ namespace School.WebApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Students",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    ContactId = table.Column<int>(nullable: false),
-                    AddressId = table.Column<int>(nullable: false),
-                    ClassId = table.Column<int>(nullable: true),
-                    DisciplineId = table.Column<int>(nullable: true),
-                    UnitId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Students_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Students_Classes_ClassId",
-                        column: x => x.ClassId,
-                        principalTable: "Classes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Students_Contacts_ContactId",
-                        column: x => x.ContactId,
-                        principalTable: "Contacts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Students_Disciplines_DisciplineId",
-                        column: x => x.DisciplineId,
-                        principalTable: "Disciplines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Students_Units_UnitId",
-                        column: x => x.UnitId,
-                        principalTable: "Units",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_CheckingAccounts_UnitId",
                 table: "CheckingAccounts",
@@ -314,20 +320,27 @@ namespace School.WebApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_TeacherId",
                 table: "Classes",
-                column: "TeacherId",
-                unique: true);
+                column: "TeacherId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_UnitId",
                 table: "Classes",
-                column: "UnitId",
-                unique: true);
+                column: "UnitId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_roomId",
                 table: "Classes",
-                column: "roomId",
-                unique: true);
+                column: "roomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DisciplineClass_StudentId",
+                table: "DisciplineClass",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Disciplines_TeacherId",
+                table: "Disciplines",
+                column: "TeacherId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InstantMessage_ContactId",
@@ -347,8 +360,7 @@ namespace School.WebApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Students_AddressId",
                 table: "Students",
-                column: "AddressId",
-                unique: true);
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_ClassId",
@@ -358,13 +370,7 @@ namespace School.WebApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Students_ContactId",
                 table: "Students",
-                column: "ContactId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_DisciplineId",
-                table: "Students",
-                column: "DisciplineId");
+                column: "ContactId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_UnitId",
@@ -374,19 +380,12 @@ namespace School.WebApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_AddressId",
                 table: "Teachers",
-                column: "AddressId",
-                unique: true);
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_ContactId",
                 table: "Teachers",
-                column: "ContactId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teachers_DisciplineId",
-                table: "Teachers",
-                column: "DisciplineId");
+                column: "ContactId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_UnitId",
@@ -397,18 +396,55 @@ namespace School.WebApi.Migrations
                 name: "IX_Units_AddressId",
                 table: "Units",
                 column: "AddressId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Students_Classes_ClassId",
+                table: "Students",
+                column: "ClassId",
+                principalTable: "Classes",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Classes_Units_UnitId",
+                table: "Classes");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Rooms_Units_UnitId",
+                table: "Rooms");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Students_Units_UnitId",
+                table: "Students");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Teachers_Units_UnitId",
+                table: "Teachers");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Classes_DisciplineClass_DisciplineId",
+                table: "Classes");
+
             migrationBuilder.DropTable(
                 name: "CheckingAccounts");
+
+            migrationBuilder.DropTable(
+                name: "Disciplines");
 
             migrationBuilder.DropTable(
                 name: "InstantMessage");
 
             migrationBuilder.DropTable(
                 name: "socialNetworks");
+
+            migrationBuilder.DropTable(
+                name: "Units");
+
+            migrationBuilder.DropTable(
+                name: "DisciplineClass");
 
             migrationBuilder.DropTable(
                 name: "Students");
@@ -423,16 +459,10 @@ namespace School.WebApi.Migrations
                 name: "Rooms");
 
             migrationBuilder.DropTable(
-                name: "Contacts");
-
-            migrationBuilder.DropTable(
-                name: "Disciplines");
-
-            migrationBuilder.DropTable(
-                name: "Units");
-
-            migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Contacts");
         }
     }
 }

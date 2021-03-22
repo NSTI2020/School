@@ -19,6 +19,11 @@ import { MatMenuModule } from '@angular/material/menu';
 
 //No Mat Material
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
+
 
 
 @NgModule({
@@ -40,7 +45,11 @@ import { FormsModule } from '@angular/forms';
         MatNativeDateModule,
         MatDividerModule,
         MatMenuModule,
-        FormsModule
+        FormsModule,
+        TooltipModule.forRoot(),
+        ModalModule.forRoot(),
+        TabsModule.forRoot()
+
 
 
     ],
@@ -62,7 +71,8 @@ import { FormsModule } from '@angular/forms';
         MatNativeDateModule,
         MatDividerModule,
         MatMenuModule,
-        FormsModule
+        FormsModule,
+        TooltipModule
 
     ]
 })

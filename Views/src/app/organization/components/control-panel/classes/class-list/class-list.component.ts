@@ -1,3 +1,4 @@
+import { state, style, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ClassesService } from 'src/app/organization/services/admin/classes/classes.service';
 import { Class } from '../../../../interfaces/Class';
@@ -8,7 +9,9 @@ import { Class } from '../../../../interfaces/Class';
   templateUrl: './class-list.component.html',
   styleUrls: ['./class-list.component.css'],
   providers: [ClassesService]
+
 })
+
 export class ClassListComponent implements OnInit {
 
 
@@ -25,7 +28,6 @@ export class ClassListComponent implements OnInit {
       (_returnSub: Class[]) => {
         this.GetAllClassesReturn = _returnSub;
         this.filteredArray = _returnSub;
-        console.log(_returnSub);
       },
       error => {
         console.log(error);

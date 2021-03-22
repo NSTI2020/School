@@ -7,18 +7,18 @@ namespace School.Repository.Data
     public class SeedingService
     {
         private readonly SchoolDbContext _context;
-        private Seeding _seeding { get; set; }
+      //  private Seeding _seeding { get; set; }
         public SeedingService(SchoolDbContext context)
         {
             _context = context;
 
         }
 
-        public async Task<bool> Seed()
+      /*  public async Task<bool> Seed()
         {
-            _seeding = new Seeding(_context);
+           // _seeding = new Seeding(_context);
 
-            return await _seeding.Classes();
-        }
+         //   return await _seeding.Classes();
+        }*/
     }
 }

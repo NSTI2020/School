@@ -20,7 +20,6 @@ namespace School.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-
             try
             {
                 Teacher[] teachers = await _repo.GetAllTeachersAsync();
@@ -28,11 +27,41 @@ namespace School.WebApi.Controllers
             }
             catch (System.Exception e)
             {
-                StatusCode(StatusCodes.Status500InternalServerError, $"A base de dados falhou. Erro {e.Message}");
+                this.StatusCode(StatusCodes.Status500InternalServerError, $"A base de dados falhou. Erro {e.Message}");
             }
             return BadRequest();
 
         }
+
+
+        [HttpGet("GetById/{Id}")]
+        public async Task<IActionResult> GetById(int Id)
+        {
+            Teacher teacher = await _repo.GetTeacherByIdAsync(Id);
+
+            return Ok(teacher);
+
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Teacher model)
+        {
+
+            _repo.Add(model);
+            if (await _repo.SaveChangesAsync())
+            {
+                return Created($"api/teachers/{model.Id}", model);
+            }
+
+            return BadRequest();
+
+        }
+
+
+
+
+
 
 
     }

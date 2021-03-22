@@ -33,6 +33,19 @@ namespace School.WebApi.Controllers
         }
 
 
+        public async Task<IActionResult> Post(Class model)
+        {
+            
+            _repo.Add(model);
+            if (await _repo.SaveChangesAsync())
+            {
+                return Created($"api/classes/{model.Id}", model);
+            }
+            return BadRequest();
+
+        }
+
+
 
 
 

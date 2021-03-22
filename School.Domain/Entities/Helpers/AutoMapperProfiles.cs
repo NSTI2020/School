@@ -11,7 +11,7 @@ namespace School.Domain.Entities.Helpers
             CreateMap<CheckingAccount, CheckingAccountDto>();
             CreateMap<Class, ClassDto>();
             CreateMap<Contact, ContactDto>();
-            CreateMap<Discipline, DisciplineDto>();
+            //CreateMap<Discipline, DisciplineDto>();
             CreateMap<InstantMessage, InstantMessageDto>();
             CreateMap<Room, RoomDto>();
             CreateMap<SocialNetwork, SocialNetworkDto>();

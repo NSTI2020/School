@@ -5,7 +5,7 @@ table {
 }
 td,
 th {
-  width: 150px;
+  width: 190px;
   text-align: center;
   color: rgb(255, 255, 255);
   padding: 5px;
@@ -31,6 +31,18 @@ textarea {
 
 #searchDiv {
   color: chocolate;
+}
+
+#newClass {
+  position: absolute;
+  left: 780px;
+  top: 40px;
+
+  /*box-shadow: 10px 1px 10px 1px;*/
+}
+.tooltip {
+  color: green;
+  background-color: white;
 }
 
 ::ng-deep .mat-focused .mat-form-field-label {

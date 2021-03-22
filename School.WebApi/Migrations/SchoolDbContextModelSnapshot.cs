@@ -108,14 +108,11 @@ namespace School.WebApi.Migrations
 
                     b.HasIndex("DisciplineId");
 
-                    b.HasIndex("TeacherId")
-                        .IsUnique();
+                    b.HasIndex("TeacherId");
 
-                    b.HasIndex("UnitId")
-                        .IsUnique();
+                    b.HasIndex("UnitId");
 
-                    b.HasIndex("roomId")
-                        .IsUnique();
+                    b.HasIndex("roomId");
 
                     b.ToTable("Classes");
                 });
@@ -149,7 +146,26 @@ namespace School.WebApi.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("School.Domain.Entities.Discipline", b =>
+            modelBuilder.Entity("School.Domain.Entities.DisciplineClass", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("_Language")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("DisciplineClass");
+                });
+
+            modelBuilder.Entity("School.Domain.Entities.DisciplineTeacher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -158,13 +174,12 @@ namespace School.WebApi.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("StudentsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeachersId")
+                    b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("Disciplines");
                 });
@@ -253,9 +268,6 @@ namespace School.WebApi.Migrations
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DisciplineId")
-                        .HasColumnType("int");
-
                     b.Property<string>("LastName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -267,15 +279,11 @@ namespace School.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId")
-                        .IsUnique();
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("ContactId")
-                        .IsUnique();
-
-                    b.HasIndex("DisciplineId");
+                    b.HasIndex("ContactId");
 
                     b.HasIndex("UnitId");
 
@@ -291,16 +299,16 @@ namespace School.WebApi.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DisciplineId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("FullName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MaritalStatus")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int?>("UnitId")
@@ -308,13 +316,9 @@ namespace School.WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId")
-                        .IsUnique();
+                    b.HasIndex("AddressId");
 
-                    b.HasIndex("ContactId")
-                        .IsUnique();
-
-                    b.HasIndex("DisciplineId");
+                    b.HasIndex("ContactId");
 
                     b.HasIndex("UnitId");
 
@@ -349,27 +353,41 @@ namespace School.WebApi.Migrations
 
             modelBuilder.Entity("School.Domain.Entities.Class", b =>
                 {
-                    b.HasOne("School.Domain.Entities.Discipline", "Discipline")
+                    b.HasOne("School.Domain.Entities.DisciplineClass", "Discipline")
                         .WithMany()
                         .HasForeignKey("DisciplineId");
 
                     b.HasOne("School.Domain.Entities.Teacher", "Teacher")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Class", "TeacherId")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("School.Domain.Entities.Unit", "Unit")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Class", "UnitId")
+                        .WithMany()
+                        .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("School.Domain.Entities.Room", "Room")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Class", "roomId")
+                        .WithMany()
+                        .HasForeignKey("roomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("School.Domain.Entities.DisciplineClass", b =>
+                {
+                    b.HasOne("School.Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
+                });
+
+            modelBuilder.Entity("School.Domain.Entities.DisciplineTeacher", b =>
+                {
+                    b.HasOne("School.Domain.Entities.Teacher", null)
+                        .WithMany("Disciplines")
+                        .HasForeignKey("TeacherId");
                 });
 
             modelBuilder.Entity("School.Domain.Entities.InstantMessage", b =>
@@ -396,8 +414,8 @@ namespace School.WebApi.Migrations
             modelBuilder.Entity("School.Domain.Entities.Student", b =>
                 {
                     b.HasOne("School.Domain.Entities.Address", "Address")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Student", "AddressId")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -406,14 +424,10 @@ namespace School.WebApi.Migrations
                         .HasForeignKey("ClassId");
 
                     b.HasOne("School.Domain.Entities.Contact", "Contact")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Student", "ContactId")
+                        .WithMany()
+                        .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("School.Domain.Entities.Discipline", null)
-                        .WithMany("Students")
-                        .HasForeignKey("DisciplineId");
 
                     b.HasOne("School.Domain.Entities.Unit", null)
                         .WithMany("Students")
@@ -423,20 +437,16 @@ namespace School.WebApi.Migrations
             modelBuilder.Entity("School.Domain.Entities.Teacher", b =>
                 {
                     b.HasOne("School.Domain.Entities.Address", "Address")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Teacher", "AddressId")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("School.Domain.Entities.Contact", "Contact")
-                        .WithOne()
-                        .HasForeignKey("School.Domain.Entities.Teacher", "ContactId")
+                        .WithMany()
+                        .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("School.Domain.Entities.Discipline", null)
-                        .WithMany("Teachers")
-                        .HasForeignKey("DisciplineId");
 
                     b.HasOne("School.Domain.Entities.Unit", null)
                         .WithMany("Teachers")

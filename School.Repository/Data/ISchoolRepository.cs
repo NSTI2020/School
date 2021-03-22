@@ -11,6 +11,12 @@ namespace School.Repository.Data
         void Delete<T>(T Entity) where T : class;
         Task<bool> SaveChangesAsync();
 
+        bool SaveChanges();
+
+
+        //Gets Address
+        Task<Address[]> GetAllAddressesAsync();
+        Task<Address> GetAddressesByIdAsync(int Id);
         //Gets Students
         Task<Student[]> GetAllStudentAsync();
         Task<Student> GetStudentByIdAsync(int Id);
@@ -35,9 +41,9 @@ namespace School.Repository.Data
         Task<Contact> GetContactByIdAsync(int Id);
 
 
-        //Gets Discipline
-        Task<Discipline[]> GetAllDisciplineAsync();
-        Task<Discipline[]> GetAllDisciplineByIdAsync(int Id);
+        //Gets Discipline Teacher
+      Task<DisciplineTeacher[]> GetAllDisciplineAsync();
+        Task<DisciplineTeacher[]> GetAllDisciplineByIdAsync(int Id);
 
 
         //Gets InstantMessage

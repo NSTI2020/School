@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using School.Domain.Entities;
 using School.Repository.Data;
+using System.Linq;
+
 
 namespace School.WebApi.Controllers
 {
@@ -29,6 +31,40 @@ namespace School.WebApi.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"A Base de dados falhou. Erro: {ex.Message}");
             }
+
+        }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetStudentsByIdAsync(int Id)
+        {
+            Student student = await _repo.GetStudentByIdAsync(Id);
+            return Ok(student);
+        }
+
+
+        [HttpGet("Put/{Id}")]
+        public async Task<IActionResult> Put(int Id)
+        {
+
+            Student student = await _repo.GetStudentByIdAsync(Id);
+
+            //if (student == null) return NotFound();
+
+            return Ok(student);
+
+        }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> Put(Student model)
+        {
+
+            _repo.Update(model);
+
+            if (await _repo.SaveChangesAsync())
+            {
+                return Created($"api/students/{model.Id}", model);
+            }
+
+            return BadRequest();
 
         }
 

@@ -1,11 +1,19 @@
+<div>
+    <button id="newClass" mat-icon-button color="primary" tooltip="Cadastrar aluno.">
+        <i class="fas fa-users fa-5x"></i>
+    </button>
+
+</div>
 <mat-form-field class="seach">
-    <mat-label>Pesquisar por aula.</mat-label>
-    <textarea matInput placeholder="Procurar aula..."></textarea>
+    <mat-label>Pesquisar por auluno.</mat-label>
+    <textarea [(ngModel)]="filteringString" matInput placeholder="Procurar aluno..."></textarea>
 </mat-form-field>
 <div id="searchDiv">
-
+    {{filteringString}}
     <br>
 </div>
+<br>
+<br>
 <div>
     <table>
         <thead colspan="2">
@@ -36,7 +44,7 @@
             <th style="background-color: rgb(14, 79, 14); color:white;"><i class="fas fa-bars"></i></th>
         </thead>
         <tr class="trSpace"></tr>
-        <tbody *ngFor="let items of getAllStudentsreturn">
+        <tbody *ngFor="let items of _filteredArray">
 
             <tr>
                 <td>{{items.name}}</td>

@@ -1,3 +1,11 @@
+<div>
+    <button id="newClass" mat-icon-button color="primary" tooltip="Cadastrar Professor."
+    (click)="openDialog()">
+        <i class="fas fa-graduation-cap fa-5x"></i>
+
+    </button>
+
+</div>
 <mat-form-field class="seach">
     <mat-label>Pesquisar por professor.</mat-label>
     <textarea [(ngModel)]="FilteringString" matInput placeholder="Procurar professor..."></textarea>
@@ -7,6 +15,8 @@
     <br>
 </div>
 <div>
+    <br>
+    <br>
     <table class="table">
         <thead>
 
@@ -37,12 +47,12 @@
         <tbody *ngFor="let items of FilteredArray">
 
             <tr>
-                <td>{{items.name}}</td>
+                <td>{{items.fullName}}</td>
                 <td>{{items.contact.email}}</td>
                 <td>
-                    {{langs}}
+                
                 </td>
-                <td>{{items.contact.instantMessage[1].name}}</td>
+                <td>Nada para Exibir</td>
                 <td>
                     <button mat-icon-button [matMenuTriggerFor]="menu">
                         <mat-icon>more_vert</mat-icon>
@@ -52,9 +62,11 @@
                             <mat-icon>deletesweep</mat-icon>
                             <span>Excluir</span>
                         </button>
-                        <button mat-menu-item>
+                        <button type="button" class="btn btn-primary" [routerLink]="['/teacher', items.id, 'edit']"
+                            mat-menu-item>
+
                             <mat-icon>edit</mat-icon>
-                            <span (click)="openDialog()">Modificar</span>
+                            <span>Modificar</span>
                         </button>
                         <button mat-menu-item>
                             <mat-icon>info</mat-icon>
@@ -63,11 +75,6 @@
                     </mat-menu>
                 </td>
             </tr>
-
         </tbody>
-
-
-
-
     </table>
 </div>
