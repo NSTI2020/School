@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using School.Domain.Entities;
 using School.Repository.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace School.WebApi.Controllers
 {
@@ -29,7 +30,7 @@ namespace School.WebApi.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Post(DisciplineTeacher model)
+        public async Task<IActionResult> Post(Discipline model)
         {
             _repo.Add(model);
             if (await _repo.SaveChangesAsync())
@@ -38,6 +39,23 @@ namespace School.WebApi.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpPost("{dt}")]
+        public async Task<IActionResult> Post(DisciplineTeacher model)
+        {
+            
+                _repo.Add(model);
+    
+
+            if (await _repo.SaveChangesAsync())
+            {
+                return Ok();
+            }
+            else
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "A base de dados falhou.");
+            }
         }
 
         [HttpGet("{seed}")]
@@ -51,7 +69,7 @@ namespace School.WebApi.Controllers
 
             foreach (string lang in language)
             {
-                DisciplineTeacher dis = new DisciplineTeacher()
+                Discipline dis = new Discipline()
                 {
                     Language = lang
                 };

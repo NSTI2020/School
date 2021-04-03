@@ -4,12 +4,11 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TabsModule } from 'ngx-bootstrap';
 import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { DisciplineTeacher } from 'src/app/organization/interfaces/DisciplineTeacher';
-import { DisciplineList } from 'src/app/organization/interfaces/DisciplineList';
+import { Discipline } from 'src/app/organization/interfaces/Discipline';
 import { Teacher } from 'src/app/organization/interfaces/Teacher';
 import { DisciplineServices } from 'src/app/organization/services/admin/disciplines/disciplines.services';
 import { TeacherServices } from '../../../../services/admin/teacher/teacherServices'
-import { stringify } from '@angular/compiler/src/util';
-import { element } from 'protractor';
+import { leadingComment } from '@angular/compiler';
 
 
 
@@ -23,13 +22,21 @@ import { element } from 'protractor';
 export class CreateTeacherComponent implements OnInit {
 
     public RegisterFormDataPer: FormGroup;
+    public FormDisciplineTeacher: FormGroup;
 
     _teacher: Teacher = new Teacher();
     _arraysDisp: DisciplineTeacher[];
 
+    Selected = new FormControl();
 
-    _disciplineList: string[] = ['Alemão', 'Árabe', 'Espanhol', 'Italiano',
+    public _disciplineList: string[] = ['Alemão', 'Árabe', 'Espanhol', 'Italiano',
         'Japonês', 'Mandarim', 'Francês', 'Inglês', 'Português']
+
+    public _language: Array<string> = new Array<string>();
+    public _discipline: Discipline = new Discipline();
+    public _disciplineArrays: Array<Discipline> = new Array<Discipline>();
+    public _disciplineTeacher: DisciplineTeacher;
+    public _disciplineTeacherArray: Array<DisciplineTeacher> = new Array<DisciplineTeacher>();
 
 
     constructor
@@ -40,7 +47,6 @@ export class CreateTeacherComponent implements OnInit {
             , public tabsModule: TabsModule
         ) { }
 
-
     Validation() {
 
         this.RegisterFormDataPer = this.fBuilder.group({
@@ -49,65 +55,75 @@ export class CreateTeacherComponent implements OnInit {
                 email: ['', []],
                 cel: ['', []],
             }),
-
             address: this.fBuilder.group({
                 complent: ['', []]
             })
-            ,
-            disciplinas: this.fBuilder.array([this.makeObj()])
+
         });
     }
 
-    makeObj(): FormGroup {
-        return this.fBuilder.group({
-            disciplines: ['', []]
+    ValidationArray() {
+        this.FormDisciplineTeacher = this.fBuilder.group({
+            DisciplineTeacher: this.fBuilder.group({
+                discipline: ['', []],
+                teacherId: ['', []]
+            })
+
         })
+
     }
 
-    Testing(value: string): string {
-      //  console.log(value)
-        return value;
-    }
-    public _language: Array<string> = new Array<string>();
-    public _Lang: DisciplineTeacher;
-    public _DisciplineTeacherArray: Array<DisciplineTeacher> = new Array<DisciplineTeacher>();
-
+    makeObj(): void {
+        console.log(this.Selected.value);
+    };
     save() {
-
+        // this.makeObj();
         this._teacher = Object.assign({}, this.RegisterFormDataPer.value)
-        this._language.forEach(element => {
-            //console.log(element)
-                this._Lang = new DisciplineTeacher();
-              //this._Lang.id = 85;
-              this._Lang.language = element;
-               //this._Lang.teacher = teacher;
-               this._DisciplineTeacherArray.push(this._Lang);
-          });
-
-          this._teacher.disciplines = this._DisciplineTeacherArray;
-
-        //        this.RegisterFormDataPer.get('disciplinas').patchValue(this._languageArray.);
+        //  this._teacher.disciplines = this._disciplineTeacherArray;
         this._TeacherServices.ApiPost(this._teacher).subscribe(
             (teacher: Teacher) => {
-              
-                console.log(teacher)
-                
-            }, error => {
-                //console.log(error);
 
-                /*
-                
-                 this._DisciplineServices.post(this._Lang).subscribe(
-                        (returnDiscipline :DisciplineTeacher) => {
-                         console.log(returnDiscipline)   
-                        })
-                
-                */
+                this.Selected.value.forEach(_language => {
+                    this._discipline = new Discipline();
+                    this._discipline.language = _language;
+                    this._disciplineArrays.push(this._discipline);
+                });
+                this._disciplineArrays.forEach(item => {
+                    this._disciplineTeacher = new DisciplineTeacher();
+                    this._disciplineTeacher.discipline = item;
+                    this._disciplineTeacher.teacherId = teacher.id;
+                    this._disciplineTeacherArray.push(this._disciplineTeacher);
+                    //  console.log(this._disciplineTeacher)
+                })
+                  this._disciplineTeacherArray.forEach(item => {
+  
+                     // this._disciplineTeacher = Object.assign({} , item)
+                     console.log(item);
+                     this._disciplineTeacher = Object.assign({}, item)
+
+                     this._DisciplineServices.postDisciplineTeacher(this._disciplineTeacher).subscribe(
+                         (DisciplineTeacher: DisciplineTeacher) => {
+                             console.log(DisciplineTeacher)
+                         });
+                      
+                  })
+  /*
+               
+*/
+
+                //console.log(this._disciplineTeacherArray)
+
+
+                //console.log(this._teacher);
+            }, error => {
+
             })
+
     }
 
     ngOnInit(): void {
         this.Validation();
+        this.ValidationArray();
 
     }
 

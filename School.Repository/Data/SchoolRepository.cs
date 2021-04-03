@@ -71,8 +71,8 @@ namespace School.Repository.Data
             IQueryable<Class> query = _context.Classes
             .AsNoTracking()
             .Include(_teacher => _teacher.Teacher)
-            .Include(_student => _student.Students)
-            .Include(_discipline => _discipline.Discipline)
+           // .Include(_student => _student.)
+
             .Include(_unit => _unit.Unit)
             .Include(_room => _room.Room);
 
@@ -96,9 +96,9 @@ namespace School.Repository.Data
 
         }
 
-        public async Task<DisciplineTeacher[]> GetAllDisciplineAsync()
+        public async Task<Discipline[]> GetAllDisciplineAsync()
         {
-            IQueryable<DisciplineTeacher> query = _context.Disciplines
+            IQueryable<Discipline> query = _context.Disciplines
             .AsNoTracking();
 
             query = query.OrderBy(_disp => _disp.Language);
@@ -106,7 +106,7 @@ namespace School.Repository.Data
             return await query.ToArrayAsync();
         }
 
-        public Task<DisciplineTeacher[]> GetAllDisciplineByIdAsync(int Id)
+        public Task<Discipline[]> GetAllDisciplineByIdAsync(int Id)
         {
             throw new System.NotImplementedException();
         }
@@ -201,7 +201,7 @@ namespace School.Repository.Data
             IQueryable<Unit> query = _context.Units
             .AsNoTracking()
             .Include(_room => _room.Rooms)
-            .Include(_students => _students.Students)
+            //.Include(_students => _students.Students)
             .Include(_teacher => _teacher.Teachers)
             .Include(_address => _address.Address);
 
@@ -214,7 +214,7 @@ namespace School.Repository.Data
             IQueryable<Unit> query = _context.Units
              .AsNoTracking()
              .Include(_room => _room.Rooms)
-             .Include(_students => _students.Students)
+         //    .Include(_students => _students.Students)
              .Include(_teacher => _teacher.Teachers)
              .Include(_address => _address.Address);
 
@@ -267,6 +267,14 @@ namespace School.Repository.Data
 
         }
 
+        Task<DisciplineTeacher[]> ISchoolRepository.GetAllDisciplineAsync()
+        {
+            throw new System.NotImplementedException();
+        }
 
+        Task<DisciplineTeacher[]> ISchoolRepository.GetAllDisciplineByIdAsync(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

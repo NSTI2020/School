@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { Teacher } from "../../../interfaces/Teacher";
 import { promise } from "selenium-webdriver";
+import { DisciplineTeacher } from "src/app/organization/interfaces/DisciplineTeacher";
 
 @Injectable()
 
@@ -26,7 +27,7 @@ export class TeacherServices {
             .then((_teacherPromisse: Teacher) => _teacherPromisse);
     }
 
-    ApiPost(_teacher: Teacher): Observable<Teacher> {
+    ApiPost(_teacher: Teacher ): Observable<Teacher> {
         return this._httpClient.post<Teacher>(this.ApiUrl, _teacher);
     }
 

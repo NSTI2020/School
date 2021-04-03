@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +16,6 @@ namespace School.WebApi.Controllers
         public TeachersController(ISchoolRepository repo)
         {
             _repo = repo;
-
         }
 
         [HttpGet]
@@ -27,21 +28,18 @@ namespace School.WebApi.Controllers
             }
             catch (System.Exception e)
             {
-                this.StatusCode(StatusCodes.Status500InternalServerError, $"A base de dados falhou. Erro {e.Message}");
+                this.StatusCode(StatusCodes.Status500InternalServerError,
+                 $"A base de dados falhou. Erro {e.Message}");
             }
             return BadRequest();
 
         }
 
-
         [HttpGet("GetById/{Id}")]
         public async Task<IActionResult> GetById(int Id)
         {
             Teacher teacher = await _repo.GetTeacherByIdAsync(Id);
-
             return Ok(teacher);
-
-
         }
 
         [HttpPost]
@@ -49,20 +47,21 @@ namespace School.WebApi.Controllers
         {
 
             _repo.Add(model);
+
+              /*          model.DisciplineTeacher.ForEach(item =>{
+            var _dt = new DisciplineTeacher();
+                _dt = item;
+                _dt.TeacherId = model.Id;
+                _repo.Add(_dt);
+
+            });*/
+            
             if (await _repo.SaveChangesAsync())
             {
                 return Created($"api/teachers/{model.Id}", model);
             }
-
             return BadRequest();
-
         }
-
-
-
-
-
-
 
     }
 }

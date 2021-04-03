@@ -8,9 +8,9 @@ namespace School.Domain.Entities
         public string Name { get; set; }
         public string LastName { get; set; }
         public int ContactId { get; set; }
-        public Contact Contact { get; set; }
+        public virtual Contact Contact { get; set; }
         public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
 
     }
 }

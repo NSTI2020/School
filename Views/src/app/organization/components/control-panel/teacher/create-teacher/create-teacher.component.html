@@ -38,13 +38,19 @@
 
                     </tr>
                 </div>
-                <div formArrayName="disciplinas">
-                    <div formGroup="disciplines">
+                <div formArrayName="disciplines">
+                    <div>
                         <tr>
                             <mat-form-field appearance="fill">
-                                <mat-label>Disciplinas</mat-label>
-                                <mat-select multiple>
-                                    <mat-option *ngFor="let discipline of _disciplineList" [value]="discipline" (click)="this._language.push(discipline)">{{discipline}}</mat-option>
+                                <mat-label>Idiomas</mat-label>
+                                <mat-select formGroup="disciplinesTeacher" [formControl]="Selected" multiple>
+                                    <mat-select-trigger>
+                                        {{Selected.value ? Selected.value[0] : ''}}
+                                        <span *ngIf="Selected.value?.length > 1" class="example-additional-selection">
+                                      (+{{Selected.value.length - 1}} {{Selected.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                    </mat-select-trigger>
+                                    <mat-option *ngFor="let topping of _disciplineList" [value]="topping">{{topping}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </tr>

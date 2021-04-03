@@ -50,7 +50,7 @@ export class ClassListComponent implements OnInit {
 
   actionFilter(filteredBy: string): Class[] {
     filteredBy = filteredBy.toLocaleLowerCase();
-    return this.GetAllClassesReturn.filter(N => N.discipline.language.toLocaleLowerCase().indexOf(filteredBy) !== -1)
+    return this.GetAllClassesReturn.filter(N => N.discipline.discipline.language.toLocaleLowerCase().indexOf(filteredBy) !== -1)
   }
 
   //#endregion

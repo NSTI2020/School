@@ -1,8 +1,10 @@
 
 import { Teacher } from "./Teacher";
+import { Discipline } from "./Discipline";
 
 export class DisciplineTeacher {
-    id: number;
-    language: string;
-    teacher: Teacher
+    disciplineId: number;
+    discipline: Discipline;
+    teacherId: number;
+    teacher: Teacher;
 }

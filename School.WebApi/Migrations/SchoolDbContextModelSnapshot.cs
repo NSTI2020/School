@@ -86,9 +86,6 @@ namespace School.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("DisciplineId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("End")
                         .HasColumnType("datetime(6)");
 
@@ -105,8 +102,6 @@ namespace School.WebApi.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DisciplineId");
 
                     b.HasIndex("TeacherId");
 
@@ -146,26 +141,7 @@ namespace School.WebApi.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("School.Domain.Entities.DisciplineClass", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("_Language")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("DisciplineClass");
-                });
-
-            modelBuilder.Entity("School.Domain.Entities.DisciplineTeacher", b =>
+            modelBuilder.Entity("School.Domain.Entities.Discipline", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -174,14 +150,24 @@ namespace School.WebApi.Migrations
                     b.Property<string>("Language")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.HasKey("Id");
+
+                    b.ToTable("Disciplines");
+                });
+
+            modelBuilder.Entity("School.Domain.Entities.DisciplineTeacher", b =>
+                {
+                    b.Property<int?>("DisciplineId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("DisciplineId", "TeacherId");
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Disciplines");
+                    b.ToTable("DisciplinesTeachers");
                 });
 
             modelBuilder.Entity("School.Domain.Entities.InstantMessage", b =>
@@ -262,9 +248,6 @@ namespace School.WebApi.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClassId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ContactId")
                         .HasColumnType("int");
 
@@ -280,8 +263,6 @@ namespace School.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("ClassId");
 
                     b.HasIndex("ContactId");
 
@@ -353,10 +334,6 @@ namespace School.WebApi.Migrations
 
             modelBuilder.Entity("School.Domain.Entities.Class", b =>
                 {
-                    b.HasOne("School.Domain.Entities.DisciplineClass", "Discipline")
-                        .WithMany()
-                        .HasForeignKey("DisciplineId");
-
                     b.HasOne("School.Domain.Entities.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
@@ -376,18 +353,19 @@ namespace School.WebApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("School.Domain.Entities.DisciplineClass", b =>
-                {
-                    b.HasOne("School.Domain.Entities.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId");
-                });
-
             modelBuilder.Entity("School.Domain.Entities.DisciplineTeacher", b =>
                 {
-                    b.HasOne("School.Domain.Entities.Teacher", null)
-                        .WithMany("Disciplines")
-                        .HasForeignKey("TeacherId");
+                    b.HasOne("School.Domain.Entities.Discipline", "Discipline")
+                        .WithMany("ListDisciplinesTeachers")
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("School.Domain.Entities.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("School.Domain.Entities.InstantMessage", b =>
@@ -418,10 +396,6 @@ namespace School.WebApi.Migrations
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("School.Domain.Entities.Class", null)
-                        .WithMany("Students")
-                        .HasForeignKey("ClassId");
 
                     b.HasOne("School.Domain.Entities.Contact", "Contact")
                         .WithMany()

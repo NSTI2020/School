@@ -13,7 +13,7 @@ namespace School.Domain.Entities
         public Contact Contact { get; set; }
         public int AddressId { get; set; }
         public Address Address { get; set; }
-        public List<DisciplineTeacher> Disciplines {get; set;}= new List<DisciplineTeacher>();
+        public List<DisciplineTeacher> DisciplineTeacher;
 
     }
 
