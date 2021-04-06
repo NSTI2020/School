@@ -1,6 +1,5 @@
 <div>
-    <button id="newClass" mat-icon-button color="primary" tooltip="Cadastrar Professor."
-    (click)="openDialog()">
+    <button id="newClass" mat-icon-button color="primary" tooltip="Cadastrar Professor." (click)="openDialog()">
         <i class="fas fa-graduation-cap fa-5x"></i>
 
     </button>
@@ -49,26 +48,25 @@
             <tr>
                 <td>{{items.fullName}}</td>
                 <td>{{items.contact.email}}</td>
-                <td>
-                
-                </td>
-                <td>Nada para Exibir</td>
+                <td>{{items.DisciplinesTeachers}}</td>
+
+                <td>{{items.contact.cellPhone}}</td>
                 <td>
                     <button mat-icon-button [matMenuTriggerFor]="menu">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
+                        <button (click)="delete(items.id)" mat-menu-item>
                             <mat-icon>deletesweep</mat-icon>
                             <span>Excluir</span>
                         </button>
-                        <button type="button" class="btn btn-primary" [routerLink]="['/teacher', items.id, 'edit']"
-                            mat-menu-item>
 
-                            <mat-icon>edit</mat-icon>
+                        <button (click)="edit(items.id)" mat-menu-item>
+                        <mat-icon>edit</mat-icon>
                             <span>Modificar</span>
                         </button>
-                        <button mat-menu-item>
+
+                        <button (click)="details(items.id)" mat-menu-item>
                             <mat-icon>info</mat-icon>
                             <span>Detalhes</span>
                         </button>

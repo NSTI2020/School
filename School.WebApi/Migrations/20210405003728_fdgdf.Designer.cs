@@ -9,8 +9,8 @@ using School.Repository.Data;
 namespace School.WebApi.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
-    [Migration("20210403073921_HOJE")]
-    partial class HOJE
+    [Migration("20210405003728_fdgdf")]
+    partial class fdgdf
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

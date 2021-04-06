@@ -48,20 +48,44 @@ namespace School.WebApi.Controllers
 
             _repo.Add(model);
 
-              /*          model.DisciplineTeacher.ForEach(item =>{
-            var _dt = new DisciplineTeacher();
-                _dt = item;
-                _dt.TeacherId = model.Id;
-                _repo.Add(_dt);
+            /*          model.DisciplineTeacher.ForEach(item =>{
+          var _dt = new DisciplineTeacher();
+              _dt = item;
+              _dt.TeacherId = model.Id;
+              _repo.Add(_dt);
 
-            });*/
-            
+          });*/
+
             if (await _repo.SaveChangesAsync())
             {
                 return Created($"api/teachers/{model.Id}", model);
             }
             return BadRequest();
         }
+
+
+        [HttpDelete("delete/{Id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Teacher result = await _repo.GetTeacherByIdAsync(id);
+
+            if (result == null)
+                return NotFound("Obj Não encontrado");
+
+            _repo.Delete(result);
+
+            if (await _repo.SaveChangesAsync())
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Deu ruim.");
+            }
+        }
+
+
+
 
     }
 }

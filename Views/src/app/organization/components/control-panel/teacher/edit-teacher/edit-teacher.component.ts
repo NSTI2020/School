@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Teacher } from 'src/app/organization/interfaces/Teacher';
 import { TeacherServices } from '../../../../services/admin/teacher/teacherServices'
@@ -21,10 +22,8 @@ export class EditTeacherComponent implements OnInit {
 
   constructor(
     private _TeacherService: TeacherServices
-    //  , private modalService: BsModalService
-    //, private formBuilder: FormBuilder
-    , private _Route: ActivatedRoute
-  ) { }
+    , public _DialogRef: MatDialogRef<EditTeacherComponent>
+    , @Inject(MAT_DIALOG_DATA) public data: Teacher) { }
 
 
 
@@ -50,7 +49,8 @@ export class EditTeacherComponent implements OnInit {
   }
 
   save() {
-    console.log(this.registerForm);
+    //console.log(this.registerForm);
+    console.log(this.data.fullName);
   }
 
 

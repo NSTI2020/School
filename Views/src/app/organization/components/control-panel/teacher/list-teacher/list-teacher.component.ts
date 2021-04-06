@@ -1,11 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap';
 import { CreateTeacherComponent } from '../create-teacher/create-teacher.component';
+import { EditTeacherComponent } from '../edit-teacher/edit-teacher.component';
 import { TeacherServices } from '../../../../services/admin/teacher/teacherServices'
 import { Teacher } from 'src/app/organization/interfaces/Teacher';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DeleteTeacherComponent } from '../delete-teacher/delete-teacher.component';
+import { DetailsTeacherComponent } from '../details-teacher/details-teacher.component';
 
 
 
@@ -22,21 +25,25 @@ export class ListTeacherComponent implements OnInit {
 
   registerForm: FormGroup;
 
-  dialogRef: MatDialog;
 
-  Teachers: Teacher[];
+  _teachers: Teacher[];
+
+  _teacherEdit: Teacher;
+
+  _teacherDelete: Teacher = new Teacher();
 
   _teacherProm: Teacher;
 
   FilteredArray: Teacher[];
+  _GetAllTeachersReturn: Teacher[];
+  _stringFilter: string;
+
 
   constructor(
     private _TeacherService: TeacherServices
-    , private dialog: MatDialog
+    , private _Dialog: MatDialog
   ) { }
 
-  _GetAllTeachersReturn: Teacher[];
-  _stringFilter: string;
 
   get FilteringString() {
     return this._stringFilter;
@@ -54,25 +61,55 @@ export class ListTeacherComponent implements OnInit {
 
   actionFilter(_filteredBy: string): Teacher[] {
     _filteredBy = _filteredBy.toLocaleLowerCase();
-    return this._GetAllTeachersReturn.filter(_teacher => _teacher.fullname.toLocaleLowerCase().indexOf(_filteredBy) !== -1);
+    return this._GetAllTeachersReturn.filter(_teacher => _teacher.fullName.toLocaleLowerCase().indexOf(_filteredBy) !== -1);
   }
 
 
   openDialog() {
-  this.dialog.open(CreateTeacherComponent)
-  //.afterClosed().subscribe(result => {
-  //console.log(`Dialog result: ${result}`);
-};
-    
- 
+    this._Dialog.open(CreateTeacherComponent)
+    //.afterClosed().subscribe(result => {
+    //console.log(`Dialog result: ${result}`);
+  };
+  //(click)="openDialog()"
+  edit(id: number) {
+    this._teacherEdit = this._teachers.find(_teacher => _teacher.id == id);
+    const _DialogRef = this._Dialog.open(EditTeacherComponent, {
+      width: '800px',
+      height: '800px',
+      data: this._teacherEdit
+    });
+
+    _DialogRef.disableClose = true;
+  }
+  details(id: number) {
+    const _DialogRef = this._Dialog.open(DetailsTeacherComponent, {
+      width: '300px',
+      height: '500px',
+      data: this._teachers.find(_teacher => _teacher.id == id)
+    });
+    _DialogRef.disableClose = true;
+  }
+
+
+  delete(id: number) {
+
+    const _DialogRef = this._Dialog.open(DeleteTeacherComponent, {
+      width: '650px',
+      height: '260px',
+      data: this._teachers.find(_teacher => _teacher.id == id)
+    });
+    _DialogRef.disableClose = true;
+
+  }
 
 
   getAllTeachers(): void {
     this._TeacherService.ApiGetAll().subscribe(
       (_returnTeachers: Teacher[]) => {
-        //   console.log(_returnTeachers);
         this._GetAllTeachersReturn = _returnTeachers;
         this.FilteredArray = _returnTeachers;
+        this._teachers = _returnTeachers;
+
       }, error => {
         // console.log(error);
       }
@@ -96,7 +133,7 @@ export class ListTeacherComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.getAllTeachers();
+    this.getAllTeachers();
 
 
 

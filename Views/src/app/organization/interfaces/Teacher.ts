@@ -8,7 +8,7 @@ export class Teacher {
     }
 
     id: number;
-    fullname: string;
+    fullName: string;
     birthday: Date;
     maritalstatus: string;
     contactid: number;

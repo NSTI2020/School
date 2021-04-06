@@ -1,0 +1,38 @@
+<h1 matDialogTitle>{{data.fullName}}</h1>
+<mat-dialog-content>
+    <div>
+        <table class="table table-stripped">
+            <thead class="table table-striped">
+                <th>Código:</th>
+                <td>{{data.id}}</td>
+            </thead>
+            <thead class="table table-striped">
+                <th>Nome completo:</th>
+                <td>{{data.fullName}}</td>
+            </thead>
+            <thead class="table table-striped">
+                <th>Data de nascimento:</th>
+                <td>{{data.birthday}}</td>
+            </thead>
+            <thead class="table table-striped">
+                <th>Estado Civil:</th>
+                <td>{{data.maritalstatus}}</td>
+            </thead>
+            <thead class="table table-striped">
+                <th>E-Mail:</th>
+                <td>{{data.contact.email}}</td>
+            </thead>
+            <thead class="table table-striped">
+                <th>Bairro:</th>
+                <td>{{data.address.neighborhood}}</td>
+            </thead>
+            <thead class="table table-striped">
+                <th>Rua:</th>
+                <td>{{data.address.street}}</td>
+            </thead>
+        </table>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions id="btns">
+    <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

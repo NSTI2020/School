@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace School.WebApi.Migrations
 {
-    public partial class HOJE : Migration
+    public partial class fdgdf : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

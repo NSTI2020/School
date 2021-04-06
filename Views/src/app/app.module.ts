@@ -55,7 +55,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 //animations
 import { BrowserModule } from '@angular/platform-browser';
@@ -63,6 +63,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { DisciplineServices } from './organization/services/admin/disciplines/disciplines.services';
+import { DeleteTeacherComponent } from './organization/components/control-panel/teacher/delete-teacher/delete-teacher.component';
+import { DetailsTeacherComponent } from './organization/components/control-panel/teacher/details-teacher/details-teacher.component';
+import { IMPLICIT_REFERENCE } from '@angular/compiler/src/render3/view/util';
 
 
 
@@ -84,6 +87,8 @@ import { DisciplineServices } from './organization/services/admin/disciplines/di
     StudentsListComponent,
     ControlPanelComponent,
     StudentCreateComponent,
+    DeleteTeacherComponent,
+    DetailsTeacherComponent,
     
 
   ],
@@ -125,7 +130,8 @@ BrowserAnimationsModule,
     ClassesService,
     StudentsServices,
     TeacherServices,
-    DisciplineServices
+    DisciplineServices,
+    MatSnackBar
 
   ],
   bootstrap: [AppComponent]

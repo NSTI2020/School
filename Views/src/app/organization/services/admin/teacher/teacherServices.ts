@@ -27,10 +27,13 @@ export class TeacherServices {
             .then((_teacherPromisse: Teacher) => _teacherPromisse);
     }
 
-    ApiPost(_teacher: Teacher ): Observable<Teacher> {
+    ApiPost(_teacher: Teacher): Observable<Teacher> {
         return this._httpClient.post<Teacher>(this.ApiUrl, _teacher);
     }
 
+    ApiDelete(id: number) {
+        return this._httpClient.delete<Teacher>(`${this.ApiUrl}/delete/${id}`)
+    }
 
 
 
