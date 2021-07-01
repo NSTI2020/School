@@ -1,0 +1,106 @@
+<div class="row" [formGroup]="this._ValGlobal._FormContact">
+    <div class="row">
+        <div class="form-group col-12">
+            <label><i class="fas fa-envelope-square"></i>&nbsp;E-mail</label>
+            <input class="form-control" type="text" formControlName="email" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('email', _ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('email', 'required' ,'Preenchimento obrigatório!', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('email', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('email',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('email', 'email' ,'Digite um e-mail válido.', _ValGlobal._FormContact)}}
+            </div>
+        </div>
+
+
+        <div class="form-group col-3">
+            <label><i class="fas fa-envelope-square"></i>&nbsp;Comercial</label>
+            <input class="form-control" type="text" formControlName="business" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('business', _ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('business', 'required' ,'Preenchimento obrigatório!', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('business', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('business',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('business', 'email' ,'Digite um e-mail válido.', _ValGlobal._FormContact)}}
+            </div>
+        </div>
+
+
+
+        <div class="form-group col-3">
+            <label id="cel"><i class="fas fa-mobile-alt"></i>Cel&nbsp;</label>&nbsp;
+            <i class="fab fa-whatsapp"></i> &nbsp; &nbsp; &nbsp;<input type="checkbox" class="form-check-input" [(ngModel)]="_checkZap" formControlName="isZap" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('isZap',_ValGlobal._FormContact)}">
+            <!--[ngModelOptions]="{standalone: true}"-->
+            <input class="form-control" type="text" formControlName="cel" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('cel',_ValGlobal._FormContact)}">
+
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('cel', 'required' ,'Preenchimento obrigatório!', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('cel', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('cel',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', _ValGlobal._FormContact)}}
+            </div>
+
+        </div>
+
+        <div class="form-group col-3" *ngIf="!_checkZap">
+            <label><i class="fab fa-whatsapp-square"></i>&nbsp;WhatsApp</label>
+            <input class="form-control" type="text" formControlName="zap" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('zap',_ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('zap', 'required' ,'Preenchimento obrigatório!', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('zap', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('zap',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', _ValGlobal._FormContact)}}
+            </div>
+
+        </div>
+
+        <div class="form-group col-3">
+            <label><i class="fas fa-phone-square-alt"></i>&nbsp;Residêncial</label>
+            <input class="form-control" type="text" formControlName="landline" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('landline', _ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('landline', 'required' ,'Preenchimento obrigatório!', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('landline', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres', _ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('landline',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_ValGlobal._FormContact)}}
+            </div>
+
+        </div>
+
+        <div class="form-group col-6">
+            <label><i class="fab fa-linkedin"></i>&nbsp;LinkedIn</label>
+            <input class="form-control" type="text" formControlName="linkedin" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('linkedin',_ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('linkedin', 'required' ,'Preenchimento obrigatório!',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('linkedin', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('linkedin',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_ValGlobal._FormContact)}}
+            </div>
+
+        </div>
+
+        <div class="form-group col-6">
+            <label><i class="fab fa-facebook"></i>&nbsp;Facebook</label>
+            <input class="form-control" type="text" formControlName="facebook" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('facebook',_ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('facebook', 'required' ,'Preenchimento obrigatório!',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('facebook', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('facebook',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_ValGlobal._FormContact)}}
+            </div>
+
+        </div>
+
+        <div class="form-group col-6">
+            <label><i class="fab fa-instagram-square"></i>&nbsp;Instagram</label>
+            <input class="form-control" type="text" formControlName="instagram" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('instagram',_ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('instagram', 'required' ,'Preenchimento obrigatório!',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('instagram', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('instagram',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_ValGlobal._FormContact)}}
+            </div>
+
+        </div>
+
+        <div class="form-group col-6">
+            <label><i class="fab fa-twitter-square"></i>&nbsp; Twitter</label>
+            <input class="form-control" type="text" formControlName="twitter" [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('twitter',_ValGlobal._FormContact)}">
+
+            <div class="invalid-feedback">
+                {{_ValGlobal.commonValidations('twitter', 'required' ,'Preenchimento obrigatório!',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('twitter', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres',_ValGlobal._FormContact)}} {{_ValGlobal.commonValidations('twitter',
+                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_ValGlobal._FormContact)}}
+            </div>
+
+        </div>
+    </div>
+</div>

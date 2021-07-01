@@ -1,9 +1,9 @@
-using AutoMapper;
+//using AutoMapper;
 using School.Domain.Entities.Dtos;
 
 namespace School.Domain.Entities.Helpers
 {
-    public class AutoMapperProfiles : Profile
+/*    public class AutoMapperProfiles : Profile
     {
         public AutoMapperProfiles()
         {
@@ -20,4 +20,5 @@ namespace School.Domain.Entities.Helpers
             CreateMap<Unit, UnitDto>();
         }
     }
+    */
 }

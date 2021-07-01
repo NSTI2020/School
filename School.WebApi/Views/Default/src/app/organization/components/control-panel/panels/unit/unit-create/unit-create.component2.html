@@ -1,0 +1,266 @@
+<div>
+
+    <div class="m-5 row">
+        <div class="col-12">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="_Mr.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div style="border:green; border-style: solid;">
+            <form [formGroup]="this._Fv._FormUnit" (ngSubmit)="save()">
+
+                <label for="">Nome Unidade</label>
+                <input type="text" class="form-control" [ngClass]="{'is-invalid': this._Fv.touchedErrors('name', this._Fv._FormUnit)}" formControlName="name">
+                <div class="invalid-feedback">
+                    {{_Fv.commonValidations('name','required','Preenchimento obrigatório!', this._Fv._FormUnit)}}{{_Fv.commonValidations('name','minlength','Preenchimento, mínimo de pelo menos 3 caracteres', this._Fv._FormUnit)}}{{_Fv.commonValidations('name','maxlength','Preenchimento
+                    não pode ultrapassar 15 caracteres.', this._Fv._FormUnit)}}
+                </div>
+
+                <div formGroupName="address">
+                    <div class="row  col-12">
+
+                        <div class="form-group col-12">
+                            <label>CEP:</label>
+                            <input type="text" class="form-control" formControlName="zipCode" [ngClass]="{'is-invalid': this._Fv.touchedErrors('address.zipCode', this._Fv._FormUnit)}">
+                            <div class="invalid-feedback">
+                                {{_Fv.commonValidations('address.zipCode', 'minlength' ,'Preenchimento, mínimo de pelo menos 5 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.zipCode', 'maxlength' ,'Preenchimento não pode ultrapassar 15 caracteres.', this._Fv._FormUnit)}}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row  col-12">
+                        <div class="form-group col-6">
+                            <label>Rua:</label>
+                            <input type="text" class="form-control" formControlName="street" [ngClass]="{'is-invalid': this._Fv.touchedErrors('address.street', this._Fv._FormUnit)}">
+
+                            <div class="invalid-feedback">
+                                {{_Fv.commonValidations('address.street', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.street', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.street',
+                                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-2">
+                            <label>Número:</label>
+                            <input type="text" class="form-control" formControlName="number" [ngClass]="{'is-invalid': this._Fv.touchedErrors('address.number', this._Fv._FormUnit)}">
+
+                            <div class="invalid-feedback">
+                                {{_Fv.commonValidations('address.number', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.number', 'minlength' ,'Preenchimento, mínimo de pelo menos 1 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.number',
+                                'maxlength' ,'Preenchimento não pode ultrapassar 7 caracteres.', this._Fv._FormUnit)}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Bairro:</label>
+                            <input type="text" class="form-control" formControlName="neighborhood" [ngClass]="{'is-invalid': this._Fv.touchedErrors('address.neighborhood', this._Fv._FormUnit)}">
+
+                            <div class="invalid-feedback">
+                                {{_Fv.commonValidations('address.neighborhood', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.neighborhood', 'minlength' ,'Preenchimento, mínimo de pelo menos 2 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.neighborhood',
+                                'maxlength' ,'Preenchimento não pode ultrapassar 50 caracteres.', this._Fv._FormUnit)}}
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Cidade:</label>
+                            <input type="text" class="form-control" formControlName="city" [ngClass]="{'is-invalid': this._Fv.touchedErrors('address.city', this._Fv._FormUnit)}">
+
+                            <div class="invalid-feedback">
+                                {{_Fv.commonValidations('address.city', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.city', 'minlength' ,'Preenchimento, mínimo de pelo menos 2 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.city',
+                                'maxlength' ,'Preenchimento não pode ultrapassar 50 caracteres.', this._Fv._FormUnit)}}
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Estado:</label>
+                            <input type="text" class="form-control" formControlName="state" [ngClass]="{'is-invalid': this._Fv.touchedErrors('address.state', this._Fv._FormUnit)}">
+
+                            <div class="invalid-feedback">
+                                {{_Fv.commonValidations('address.state', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.state', 'minlength' ,'Preenchimento, mínimo de pelo menos 2 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('address.state',
+                                'maxlength' ,'Preenchimento não pode ultrapassar 3 caracteres.', this._Fv._FormUnit)}}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-12">
+                            <label>Complemento:</label>
+                            <input id="complement" type="text" class="form-control" formControlName="complement" [ngClass]="{'is-invalid': this._Fv.touchedErrors('address.complement', this._Fv._FormUnit)}">
+
+                            <div class="invalid-feedback">
+
+                                {{_Fv.commonValidations('address.complement', 'maxlength' ,'Não pode ultrapassar, 500 caracteres.', this._Fv._FormUnit)}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div formGroupName="contact">
+                    <div class="ml-5">
+                        <div class="row">
+
+                            <div class="mr-5">
+                                <label>E-mail:</label>
+                                <input class="form-control" type="text" formControlName="email" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.email', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.email', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.email', 'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit )}} {{_Fv.commonValidations('contact.email',
+                                    'email' ,'Digite um e-mail válido.', this._Fv._FormUnit)}}
+                                </div>
+                            </div>
+                            <div class="mr-5">
+                                <i id="zapIcon" class="fab fa-whatsapp ml-5"></i>
+                                <input type="checkbox" class="form-check-input" [(ngModel)]="_Fv._checkZap" formControlName="isZap" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.isZap', this._Fv._FormUnit)}">
+                                <!--[ngModelOptions]="{standalone: true}"-->
+                                <label id="cel">Cel:</label>
+                                <input class="form-control" type="text" formControlName="cel" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.cel', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.cel', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.cel', 'minlength' ,'Preenchimento, mínimo de pelo menos 9 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.cel',
+                                    'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                                </div>
+                            </div>
+                            <div class="mr-5" *ngIf="!_Fv._checkZap">
+                                <label>Whatsapp:</label>
+                                <input class="form-control" type="text" formControlName="zap" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.zap', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.zap', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.zap', 'minlength' ,'Preenchimento, mínimo de pelo menos 9 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.zap',
+                                    'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                                </div>
+
+                            </div>
+
+
+                            <div class="mr-5">
+                                <label>Residencial:</label>
+                                <input class="form-control" type="text" formControlName="landline" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.landline', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.landline', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.landline', 'minlength' ,'Preenchimento, mínimo de pelo menos 5 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.landline',
+                                    'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="mr-5">
+                                <label>Linkedin:</label>
+                                <input class="form-control" type="text" formControlName="linkedin" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.linkedin', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.linkedin', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.linkedin', 'minlength' ,'Preenchimento, mínimo de pelo menos 5 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.linkedin',
+                                    'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                                </div>
+
+                            </div>
+
+                            <div class="mr-5">
+                                <label>Facebook:</label>
+                                <input class="form-control" type="text" formControlName="facebook" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.facebook', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.facebook', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.facebook', 'minlength' ,'Preenchimento, mínimo de pelo menos 5 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.facebook',
+                                    'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                                </div>
+
+                            </div>
+
+                            <div class="mr-5">
+                                <label>Instagram:</label>
+                                <input class="form-control" type="text" formControlName="instagram" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.instagram', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.instagram', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.instagram', 'minlength' ,'Preenchimento, mínimo de pelo menos 5 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.instagram',
+                                    'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <label>Twitter:</label>
+                                <input class="form-control" type="text" formControlName="twitter" [ngClass]="{'is-invalid': _Fv.touchedErrors('contact.twitter', this._Fv._FormUnit)}">
+
+                                <div class="invalid-feedback">
+                                    {{_Fv.commonValidations('contact.twitter', 'required' ,'Preenchimento obrigatório!', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.twitter', 'minlength' ,'Preenchimento, mínimo de pelo menos 5 caracteres', this._Fv._FormUnit)}} {{_Fv.commonValidations('contact.twitter',
+                                    'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', this._Fv._FormUnit)}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+
+
+
+
+            <div>
+
+                <div class="row ">
+                    <!--Room-->
+                    <div>
+                        <label class="ml-5" for="">Sala</label>
+                        <div [formGroup]="this._Fv._FormRoom">
+                            <div class="ml-5 form-inline">
+                                <div>
+                                    <label>Nome da sala:</label>
+                                    <input type="text" class="form-control" [ngClass]="{'is-invalid': _Fv.touchedErrors('identifier', this._Fv._FormRoom)}" formControlName="identifier">
+                                    <div class="invalid-feedback">
+                                        {{_Fv.commonValidations('identifier', 'required' ,'Preenchimento obrigatório!', this._Fv._FormRoom)}} {{_Fv.commonValidations('identifier', 'maxlength' ,'Preenchimento não pode ultrapassar 50 caracteres.', this._Fv._FormRoom)}}
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="ml-3">
+                                    <label for="">Capacidade:</label>
+                                    <input class="form-control" type="number" [ngClass]="{'is-invalid': _Fv.touchedErrors('description', this._Fv._FormRoom)}" formControlName="capacity">
+                                    <div class="invalid-feedback"> {{_Fv.commonValidations('capacity', 'maxlength' ,'Preenchimento não pode ultrapassar 3 caracteres.', this._Fv._FormRoom)}}
+                                    </div>
+                                </div>
+
+                                <div class="ml-3">
+                                    <label for="">Descrição:</label>
+                                    <input type="text" class="form-control" [ngClass]="{'is-invalid': _Fv.touchedErrors('description', this._Fv._FormRoom)}" formControlName="description">
+                                    <div class="invalid-feedback"> {{_Fv.commonValidations('description', 'maxlength' ,'Preenchimento não pode ultrapassar 50 caracteres.', this._Fv._FormRoom)}}
+                                    </div>
+                                </div>
+
+                                <div class="col-1 mr-5">
+                                    <button [disabled]="!this._Fv._FormRoom.valid" (click)="this.roomsAddToArray()" type="submit" class="btn btn-primary">Adicionar</button>
+                                </div>
+                                <div class="col-1 ml-5">
+                                    <button [disabled]="_Fv.validatorsRooms()" (click)="this.save()" type="submit" class="btn btn-success">Salvar</button>
+                                    <!---->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row ml-5">
+                            <small>NOME DA SALA, é somente identificação, ex: sala de italiano, sala 01 etc...</small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1 class="text-justify">SALAS</h1>
+                    </div>
+
+                    <div class="ml-5">
+                        <h1>{{this._Fv._numberOfRooms}}</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<app-form-debug [_Form]="_Fv._FormUnit"></app-form-debug>
+<br>
+<app-form-debug [_Form]="_Fv._FormRoom"></app-form-debug>

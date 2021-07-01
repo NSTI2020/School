@@ -1,0 +1,74 @@
+#cel {
+    margin-left: 20px;
+}
+
+#check {
+    margin-left: 1px;
+}
+
+#zapIcon {
+    margin-left: 0px;
+}
+
+.card {
+    width: 150px;
+    height: 150px;
+}
+
+#cardDiv {
+    margin-left: 0%;
+}
+
+#btnUpload {
+    margin-left: 33px;
+    margin-top: -33px;
+}
+
+#disciplines {
+    margin-left: 420px;
+    height: -120px;
+    text-align: center;
+    width: 150px;
+}
+
+#complement {
+    width: 768px;
+    margin-left: -15px;
+}
+
+#fileBtn {
+    margin-left: 120px;
+}
+
+
+/*
+#fullname {
+    width: 768px;
+    margin-left: -15px;
+}
+
+
+
+#arrayDisp {
+    margin-top: -150px;
+    margin-left: 500px;
+}
+*/
+
+#maritial {
+    margin-top: 30px;
+}
+
+#cam {
+    position: absolute;
+}
+
+#captured {
+    width: 270px;
+    height: 230px;
+    border-radius: 100%;
+}
+
+#groupCam {
+    margin-left: 30px;
+}

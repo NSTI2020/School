@@ -6,6 +6,6 @@ namespace School.Domain.Entities
     {
         public int Id { get; set; }
         public string Language { get; set; }
-        public List<DisciplineTeacher> ListDisciplinesTeachers { get; set; }
+         
     }
 }

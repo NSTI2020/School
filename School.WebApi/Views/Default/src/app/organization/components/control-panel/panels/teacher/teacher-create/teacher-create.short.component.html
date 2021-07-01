@@ -1,0 +1,91 @@
+<div class="bg-warning m-2 p-2">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="_Mr.hide()"> <span
+            aria-hidden="true">&times;</span></button>
+    <div mb-5>
+
+        <app-cam></app-cam>
+
+
+        <div class="bg-primary row" *ngIf="!this._LocalHelpersCam.statusCam()">
+            <i class="fas fa-user-tie fa-5x" style="margin-left: 100px;"></i>
+        </div>
+    </div>
+    <br>
+    <div class="bg-warning mt-5">
+        <div>
+            <div class="bg-info" id="groupCam">
+                <div style="float: right;">
+                    <div class="bg-success">
+                        <button id="fileBtn" class="btn btn-success" (click)="file.click()">Arquivo</button> &nbsp;
+                    </div>
+                </div>
+                <!--      <div class="snapshot" *ngIf="_valGlobal.webcamImage || _imgDynamic">-->
+                <!--<img id="captured" *ngIf="webcamImage" [src]="webcamImage.imageAsDataUrl" />-->
+                <!--<img id="captured" *ngIf="_imgDynamic" [src]="allUrlPhoto" </div> />-->
+            </div>
+
+            <br>
+            <br>
+
+            <form [formGroup]="_FormTeacher">
+                <div class="col-12">
+                    <div class="ml-4">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" #file class="btn btn-success mr-2 mt-2" style="display: none;">
+                        <label>Nome Completo:</label>
+                        <input type="text" class="form-control" [ngClass]="{'is-invalid': _valGlobal.touchedErrors('fullName',_FormTeacher)}" formControlName="fullName">
+                        <div class="invalid-feedback">
+                            {{_valGlobal.commonValidations('fullName', 'required' ,'Nome é de preenchimento obrigatório!',_FormTeacher)}} {{_valGlobal.commonValidations('fullName', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres',_FormTeacher)}} {{_valGlobal.commonValidations('fullName',
+                            'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_FormTeacher)}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Unidades:</label>
+                        <select type="text" class="form-control" [(ngModel)]="_unitId" [ngClass]="{'is-invalid': _valGlobal.touchedErrors('unitteachers',_FormTeacher)}" formControlName="unitteachers" multiple>
+                            <option *ngFor="let unit of _units" [ngValue]="unit.id">{{unit.name}}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            {{_valGlobal.commonValidations('unitteachers', 'required' ,'Nome é de preenchimento obrigatório!',_FormTeacher)}} {{_valGlobal.commonValidations('unitteachers', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres',_FormTeacher)}} {{_valGlobal.commonValidations('unitteachers',
+                            'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.',_FormTeacher)}}
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <select class="form-control" multiple [(ngModel)]="_arrayLangs" id="arrayDisp" [ngClass]="{'is-invalid': _valGlobal.touchedErrors('disciplines',_FormTeacher)}" formControlName="disciplines">
+                            <!--[ngModelOptions]="{standalone: true}"-->
+                            <option *ngFor="let _disciplinesStr of _disciplinesStringsArray let i = index"
+                                [ngValue]="_disciplinesStr">{{_disciplinesStr}}</option>
+                        </select>
+
+                        <div class="invalid-feedback">
+                            {{_valGlobal.commonValidations('disciplines', 'required' ,'Preenchimento obrigatório!',_FormTeacher)}}
+                        </div>
+                    </div>
+                    <div class="form-group" formGroupName="contact">
+                        <label>E-mail:</label>
+                        <input class="form-control" type="text" [ngClass]="{'is-invalid': _valGlobal.touchedErrors('contact.email',_FormTeacher)}" formControlName="email">
+                        <div class="invalid-feedback">
+                            {{_valGlobal.emailValidation('contact.email', 'required' ,'E-mail é de preenchimento obrigatório!',_FormTeacher)}} {{_valGlobal.emailValidation('contact.email', 'maxlength' ,'Preenchimento, não pode ultrapassar 150 caracteres.',_FormTeacher)}} {{_valGlobal.emailValidation('contact.email',
+                            'email' ,'E-mail é inválido.',_FormTeacher)}}
+                        </div>
+
+                    </div>
+                    <div>
+                        <!---->
+                        <button type="submit" (click)="save()" class="btn btn-success">
+                            Cadastrar
+                        </button>
+                        <!--[disabled]="buttonOnOff()"-->
+                    </div>
+                    <br>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div>
+        <!--<app-form-debug [_Form]="_FormTeacher"></app-form-debug>-->
+    </div>
+</div>

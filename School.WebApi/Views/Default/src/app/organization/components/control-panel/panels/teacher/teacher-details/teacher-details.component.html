@@ -1,0 +1,74 @@
+<div class="m-2 p-2">
+    <div class="row">
+        <!--Teacher-->
+        <div class="col-4">
+            <div>
+                <img src="http://localhost:5000/resources/images/{{this._teacher.photo}}" style="height: 150px; width: 150px;">
+            </div>
+            <div>
+                {{_teacher.fullName}}
+            </div>
+            <div>
+                {{_teacher.maritalStatus}}
+            </div>
+            <div>
+                {{_teacher.birthday}}
+            </div>
+        </div>
+
+        <!--Teacher.Address-->
+        <div class="col-4">
+            <div>
+                {{_teacher.address.street}}
+            </div>
+            <div>
+                {{_teacher.address.zipcode}}
+            </div>
+            <div>
+                {{_teacher.address.number}}
+            </div>
+            <div>
+                {{_teacher.address.neighborhood}}
+            </div>
+            <div>
+                {{_teacher.address.city}}
+            </div>
+            <div>
+                {{_teacher.address.state}}
+            </div>
+            <div>
+                {{_teacher.address.complement}}
+            </div>
+        </div>
+        <!--Teacher.Contact-->
+        <div class="col-4">
+            <div>
+                {{_teacher.contact.email}}
+            </div>
+            <div>
+                {{_teacher.contact.zap}}
+            </div>
+            <div>
+                {{_teacher.contact.iszap}}
+            </div>
+            <div>
+                {{_teacher.contact.cel}}
+            </div>
+            <div>
+                {{_teacher.contact.landline}}
+            </div>
+            <div>
+                {{_teacher.contact.linkedin}}
+            </div>
+            <div>
+                {{_teacher.contact.facebook}}
+            </div>
+            <div>
+                {{_teacher.contact.instagram}}
+            </div>
+            <div>
+                {{_teacher.contact.twitter}}
+            </div>
+        </div>
+    </div>
+</div>

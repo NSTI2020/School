@@ -1,0 +1,11 @@
+/*BootStrap Style sheet*/
+
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+/*FontAwesome Style sheet*/
+
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
+
+/*DATE FORMAT TO INSERT*/
+
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';

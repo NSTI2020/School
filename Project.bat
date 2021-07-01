@@ -25,8 +25,7 @@ dotnet tool install --global dotnet-ef
 
 start angular.bat
 
-ng new Views
-pause
-npm install bootstrap --save
-npm i @fortawesome/fontawesome-free --save 
-npm install ngx-bootstrap --save
+cd School.WebApi
+md Views
+cd Views
+ng new Default

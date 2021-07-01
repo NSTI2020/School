@@ -1,0 +1,30 @@
+<div class="m-3 col-auto" *ngIf="_Form">
+    <pre class="bg-warning row">
+        <div>
+            FORM DETAILS:
+        </div>
+    </pre>
+    <hr>
+    <pre class="row bg-danger" style="color: white;">
+        Form Object:
+        <br> {{_Form.value | json}}
+        <div class="col">
+
+        </div>
+    </pre>
+    <hr>
+    <pre class="row bg-success">
+        Form Valid:
+        <div class="col">
+            {{_Form.valid}}
+        </div>
+    </pre>
+
+    <pre class="row bg-primary">
+        Form Status:
+        <div class="col">
+            {{_Form.status}}
+        </div>
+    </pre>
+
+</div>

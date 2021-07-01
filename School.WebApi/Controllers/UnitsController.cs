@@ -1,17 +1,19 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using School.Domain.Entities;
 using School.Repository.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace School.WebApi.Controllers
 {
-
     [ApiController]
     [Route("api/{controller}")]
     public class UnitsController : ControllerBase
     {
-        private readonly ISchoolRepository _repo;
-        public UnitsController(ISchoolRepository repo)
+        private readonly ISRepository _repo;
+        public UnitsController(ISRepository repo)
         {
             _repo = repo;
         }
@@ -19,59 +21,44 @@ namespace School.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Unit model)
         {
-            _repo.Add(model);
-            if (await _repo.SaveChangesAsync())
+            try
             {
-                return Created($"api/controller/{model.Id}", model);
-            }
+                if (model == null) return NotFound();
+                //    Unit unit = model;
+                //    unit.Address = model.Address;
+                //    unit.Contact = model.Contact;
 
-            return BadRequest();
+
+
+                _repo.Add(model);
+                if (await _repo.SaveChangesAsync())
+                {
+                    return Created($"api/units/{model.Id}", model);
+                }
+            }
+            catch (System.Exception msg)
+            {
+                this.StatusCode(StatusCodes.Status500InternalServerError, $"A base de dados falhou. Erro: {msg.Message}");
+            }
+            return Ok(model);
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            Unit[] units = await _repo.GetAllUnitAsync();
-
-            return Ok(units);
-
-        }
-        
-        [HttpGet("{seed}")]
-        public async Task<string> seed()
-        {
-            Address address = new Address()
+            try
             {
-                Street = "Rua Espirito Santo",
-                Number = "1137",
-                Neighborhood = "Lourdes",
-                City = "Belo Horizonte",
-                State = "Minas Gerais",
-                Complement = "Luiziana Lanna"
-            };
+                Unit[] unit = await _repo.GetAllUnitsAsync(true);
 
-            Unit unit = new Unit()
-            {
-                Name = "Nova Cintra",
-                // Rooms = "",
-                //CheckingAccounts = "",
-                //Students = "",
-                //Teachers = "",
-                AddressId = 6,
-                //Address = address
-            };
-
-            _repo.Add(unit);
-            if (await _repo.SaveChangesAsync())
-            {
-               return "Deu BOM, foi salvo.....";
+                if (unit == null) return NotFound();
+                return Ok(unit);
             }
-            
-            return "Não Salvou";
-
-
+            catch (System.Exception msg)
+            {
+                this.StatusCode(StatusCodes.Status500InternalServerError, $"A base de dados falhou. Erro: {msg.Message}");
+            }
+            return BadRequest();
         }
-
 
     }
 }

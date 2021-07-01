@@ -1,0 +1,104 @@
+<div class="m-2 p-2" [formGroup]="_formTeacher" (ngSubmit)="save()">
+    <div>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="_Mr.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="m-3">
+        <div class="row ml-3">
+        </div>
+        <div class="row" style="height: 250px;">
+            <div class="row">
+                <div formArrayName="disciplines" *ngFor="let item of _languages let i = index">
+                    <label class="checkbox">
+                        <input type="checkbox" [value]="item" [formControlName]="i">{{item + ' '}}
+                    </label>
+                </div>
+            </div>
+            <br>
+            <div class="col" *ngIf="true">
+                <br>
+                <br>
+                <div style="margin-top: -60px;">
+                    <app-cam></app-cam>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <!--     <div class="m-3" *ngIf="this.apiPhoto">
+                    <img id="photo" src="{{this._urlApi}}{{_teacher.photo}}" class="card-img-top" style="width:200px; height: 200px;" alt="">
+
+                </div>-->
+
+                <div *ngIf="this.webcamImage">
+                    <img id="photo" src="{{this.webcamImage.imageAsDataUrl}}" class="card-img-top" style="width:200px; height: 200px;" alt="">
+                </div>
+
+
+                <div class="m-3" *ngIf="this.apiPhotoFile">
+                    <img id="photo" src="{{this._urlApi}}{{this._teacherPhotoFile}}" class="card-img-top" style="width:200px; height: 200px;" alt="">
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+        <br>
+        <hr>
+        <div>
+            <div>
+                <div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="fullname">Nome Completo:</label>
+                            <input type="text" id="fullname" class="form-control" formControlName="fullName" [ngClass]="{'is-invalid': _valGlobal.touchedErrors('fullName', _formTeacher)}">
+                            <div class="invalid-feedback">
+                                {{_valGlobal.commonValidations('fullName', 'required' ,'Nome é de preenchimento obrigatório!', _formTeacher)}} {{_valGlobal.commonValidations('fullName', 'minlength' ,'Preenchimento, mínimo de pelo menos 3 caracteres', _formTeacher)}} {{_valGlobal.commonValidations('fullName',
+                                'maxlength' ,'Preenchimento não pode ultrapassar 150 caracteres.', _formTeacher)}}
+                            </div>
+
+
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="birthday">Aniversário:</label>
+                            <input type="text" id="birthday" class="form-control" bsDatepicker formControlName="birthday" [ngClass]="{'is-invalid': _valGlobal.touchedErrors('birthday', _formTeacher)}" bsDatepicker>
+
+                            <div class="invalid-feedback">
+                                {{_valGlobal.commonValidations('birthday', 'required' ,'Aniversário é de preenchimento obrigatório!', _formTeacher)}} {{_valGlobal.commonValidations('birthday', 'minlength' ,'Preenchimento, mínimo de pelo menos 5 caracteres', _formTeacher)}} {{_valGlobal.commonValidations('birthday',
+                                'maxlength' ,'Preenchimento não pode ultrapassar 11 caracteres.', _formTeacher)}}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-3">
+                            <label for="maritalstatus">Estado Civil</label>
+                            <select id="maritalstatus" class="custom-select" formControlName="maritalStatus" [ngClass]="{'is-invalid': _valGlobal.touchedErrors('maritalStatus', _formTeacher)}">
+                                <option [value]="maritialStatus" *ngFor="let maritialStatus of this._options">
+                                    {{maritialStatus}}
+                                </option>
+                            </select>
+
+                            <div class="invalid-feedback">
+                                {{_valGlobal.commonValidations('maritalStatus', 'required' ,'Estado civil é de preenchimento obrigatório!', _formTeacher)}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <app-address></app-address>
+                <hr>
+                <div>
+                    <app-contact></app-contact>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success" (click)="save()">Salvar</button> &nbsp;
+        <!-- [disabled]="!_formTeacher.valid"-->
+    </div>
+
+    <input type="file" (change)="onChangephoto($event)" #file accept="image/jpg, image/png, image/jpeg" style="display: none;">
+    <!-- <app-form-debug [_Form]="_formTeacher"></app-form-debug>-->
+</div>

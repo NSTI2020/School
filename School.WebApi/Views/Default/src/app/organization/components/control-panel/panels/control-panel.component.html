@@ -1,0 +1,94 @@
+<div id="all">
+    <tabset>
+
+        <tab heading="UNIDADES" id="tab1">
+            <br>
+            <div class="container-fluid">
+                <i tooltip=" Cadastrar Unidade. " class="fas fa-university fa-5x " (click)="unitModalCreate() ">
+                </i>
+            </div>
+            <hr>
+            <div *ngFor="let unit of _Units ">
+
+                <accordion [isAnimated]="true ">
+                    <accordion-group heading="{{unit.name}} ">
+                        <div class="row" style="height: 250;">
+
+
+
+                        </div>
+                        <hr>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </tab>
+
+
+        <tab heading="PROFESSORES" id="tab1">
+            <br>
+            <div class="container-fluid">
+                <i tooltip=" Cadastrar Professor. " class="fas fa-user-tie fa-5x " (click)="modalCreate() ">
+                </i>
+            </div>
+            <hr>
+            <div *ngFor="let teacher of _teachers ">
+                <accordion [isAnimated]="true ">
+                    <accordion-group heading="{{teacher.fullName}} ">
+
+                        <div class="row" style="height: 250;">
+
+                            <div class="col">
+                                <img src="{{apiPhoto+teacher.photo}} " id="photo" style="width:250px; height: 250px; ">
+                            </div>
+                            <div class="p-4">
+                                <div>
+                                    <h2 class="fab fa-whatsapp">&nbsp;&nbsp;{{teacher.contact.zap}}</h2>
+                                </div>
+                                <br>
+                                <br>
+                                <div>
+                                    <h2 class="fas fa-mobile-alt">&nbsp;&nbsp;{{teacher.contact.cel}}</h2>
+                                </div>
+
+                                <br>
+                                <br>
+                                <h2 id="email">
+                                    <div class="fas fa-mail-bulk">&nbsp;&nbsp;{{teacher.contact.email}}</div>
+                                </h2>
+                            </div>
+                            <div class="p-4">
+                            </div>
+
+                        </div>
+
+                        <hr>
+                        <div class="d-flex flex-row" style="height:50px;">
+                            <div tooltip="Excluir {{test}} " (click)="modalDelete(teacher.id)" class="col fas fa-trash-alt fa-2x "></div>
+
+                            <div id="inf" tooltip="Todas as informações de {{test}} " class="col fas fa-info fa-2x" (click)="modalDetails(teacher.id)"> </div>
+
+                            <div id="edit" tooltip="Editar {{test}}" (click)="modalEdit(teacher.id)" class="col fas fa-pencil-alt fa-2x"></div>
+                        </div>
+
+                    </accordion-group>
+                </accordion>
+            </div>
+        </tab>
+
+        <tab heading="ALUNOS ">
+            <accordion [isAnimated]="true ">
+                <accordion-group heading="Marcus Vinícius Dias ">
+                    ALUNOS
+                </accordion-group>
+            </accordion>
+        </tab>
+
+        <tab heading="AULAS ">
+            <accordion [isAnimated]="true ">
+                <accordion-group heading="Aluno Estudante Dedicado ">
+                    AULAS
+                </accordion-group>
+            </accordion>
+        </tab>
+    </tabset>
+</div>

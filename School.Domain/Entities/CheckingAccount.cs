@@ -11,5 +11,6 @@ namespace School.Domain.Entities
         public int Account { get; set; }
         public string Status { get; set; }
         public string Description { get; set; }
+
     }
 }

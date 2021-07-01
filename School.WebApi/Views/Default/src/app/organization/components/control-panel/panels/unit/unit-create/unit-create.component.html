@@ -1,0 +1,80 @@
+<div class="m-5 row">
+    <div class="col-12">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="_Mr.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div>
+        <div [formGroup]="_FormUnit" (ngSubmit)="save()">
+            <div>
+                <label for="">Nome Unidade</label>
+                <input type="text" class="form-control " [ngClass]="{'is-invalid': _ValGlobal.touchedErrors('name', _FormUnit)}" formControlName="name">
+
+                <div class="invalid-feedback">
+                    {{_ValGlobal.commonValidations('name','required','Preenchimento obrigatório!', _FormUnit)}}{{_ValGlobal.commonValidations('name','minlength','Preenchimento, mínimo de pelo menos 3 caracteres', _FormUnit)}}{{_ValGlobal.commonValidations('name','maxlength','Preenchimento
+                    não pode ultrapassar 15 caracteres.', _FormUnit)}}
+                </div>
+                <app-address></app-address>
+                <app-contact></app-contact>
+            </div>
+
+
+            <div>
+                <!--Room-->
+
+
+                <label class="ml-5" for="">
+                    <h1>Adicionar Sala:</h1>
+                </label>
+                <div formArrayName="rooms">
+
+                    <div [formGroupName]="0">
+                        <div class="ml-5 form-inline">
+                            <div>
+                                <label>Nome da sala:</label>
+                                <input type="text" class="form-control" formControlName="identifier">
+
+                            </div>
+
+                            <div class="ml-3">
+                                <label for="">Capacidade:</label>
+                                <input class="form-control" type="number" formControlName="capacity">
+                            </div>
+
+                            <div class="ml-3">
+                                <label for="">Descrição:</label>
+                                <input type="text" class="form-control" formControlName="description">
+                            </div>
+                            <br>
+                            <div class="col-1 mr-5">
+                                <button [disabled]="!_FormUnit.valid" (click)="this.roomsAddToArray()" type="submit" class="btn btn-primary">Adicionar</button>
+
+                            </div>
+                            <div class="col-1 ml-5">
+                                <button [disabled]="!enableBtnSave()" (click)="this.save()" type="submit" class="btn btn-success">Salvar</button>
+
+                            </div>
+                            <hr>
+
+                            <div>
+                                <h1 class="text-justify">SALAS: {{this._numberOfRooms}}</h1>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row ml-5">
+                    <small>NOME DA SALA, é somente identificação, ex: sala de italiano, sala 01 etc...</small>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!--<app-form-debug [_Form]="_FormUnit"></app-form-debug>-->

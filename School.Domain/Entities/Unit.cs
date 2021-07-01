@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace School.Domain.Entities
 {
@@ -7,12 +8,13 @@ namespace School.Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public List<Room> Rooms { get; set; } = new List<Room>();
-        public List<CheckingAccount> CheckingAccounts { get; set; } = new List<CheckingAccount>();
-        public List<Student> Students { get; set; } = new List<Student>();
-        public List<Teacher> Teachers { get; set; } = new List<Teacher>();
+        public List<Room> Rooms { get; set; }
+        public List<CheckingAccount> CheckingAccounts { get; set; }
+        public List<Student> Students { get; set; }
+        //public List<UnitTeacher> Teachers { get; set; }
         public int AddressId { get; set; }
         public Address Address { get; set; }
+        public int ContactId { get; set; }
+        public Contact Contact { get; set; }
     }
 }

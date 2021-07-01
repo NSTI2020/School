@@ -1,0 +1,15 @@
+#all {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1%;
+}
+
+#photo {
+    border-radius: 20%;
+    border-style: solid;
+    border-color: green;
+}
+
+#cam {
+    border-radius: 100%;
+}
